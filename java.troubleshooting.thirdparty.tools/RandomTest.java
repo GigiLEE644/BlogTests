@@ -6,9 +6,13 @@ import java.util.concurrent.TimeUnit;
 public class RandomTest {
     public static void main(String[] args) throws InterruptedException {
         while (true) {
-            sleep(1);
-            print(random());
+            process();
         }
+    }
+
+    private static void process() throws InterruptedException {
+        sleep(1);
+        print(random());
     }
 
     private static void print(double random) {
