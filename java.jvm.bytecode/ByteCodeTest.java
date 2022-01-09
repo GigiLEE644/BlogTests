@@ -4,7 +4,7 @@ public class ByteCodeTest {
         int b = 2;
         int c = add(a, b);
 
-        System.out.println(a + " + " + b + " = " + c);
+        System.out.println(c);
     }
 
     private static int add(int a, int b) {
