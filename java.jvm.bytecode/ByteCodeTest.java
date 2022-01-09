@@ -5,10 +5,6 @@ public class ByteCodeTest {
         int c = add(a, b);
 
         System.out.println(a + " + " + b + " = " + c);
-
-        // String name = ByteCodeTest.class.getName() + ".class";
-        // URL url = ByteCodeTest.class.getResource(name);
-        // System.out.println(url.getPath());
     }
 
     private static int add(int a, int b) {
