@@ -3,7 +3,7 @@ import java.time.Instant;
 
 public class ExecutionModeTest {
     /**
-     * -Xint -Xcomp -Xmixed -XX:+PrintCompilation
+     * -Xint -Xcomp -Xmixed -XX:+PrintCompilation -XX:+PrintCodeCache
      */
     public static void main(String[] args) {
         Instant inst1 = Instant.now();
