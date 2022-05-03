@@ -1,27 +1,15 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * -verbose:gc
+ */
 public class GCLogTest {
-    private static Map<String, String> stringContainer = new HashMap<>();
-
     public static void main(String[] args) {
-        System.out.println("Start of program!");
-        String stringWithPrefix = "stringWithPrefix";
+        List<byte[]> list = new ArrayList<>();
 
-        for (int i = 0; i < 3000000; i++) {
-            String newString = stringWithPrefix + i;
-            stringContainer.put(newString, newString);
+        for (int i = 0; i < 500; i++) {
+            list.add(new byte[1024 * 100]); //100KB
         }
-        System.out.println("MAP size: " + stringContainer.size());
-
-        System.gc();
-
-        for (int i = 0; i < 2000000; i++) {
-            String newString = stringWithPrefix + i;
-            stringContainer.remove(newString);
-        }
-
-        System.out.println("MAP size: " + stringContainer.size());
-        System.out.println("End of program!");
     }
 }
