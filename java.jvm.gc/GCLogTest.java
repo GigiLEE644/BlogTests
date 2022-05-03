@@ -3,6 +3,7 @@ import java.util.List;
 
 /**
  * -verbose:gc
+ * -XX:+PrintGC
  */
 public class GCLogTest {
     public static void main(String[] args) {
