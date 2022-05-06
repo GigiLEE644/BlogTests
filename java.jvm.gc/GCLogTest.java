@@ -4,13 +4,14 @@ import java.util.List;
 /**
  * -verbose:gc
  * -XX:+PrintGC
+ * -XX:+PrintGCDetails
  */
 public class GCLogTest {
     public static void main(String[] args) {
         List<byte[]> list = new ArrayList<>();
 
         for (int i = 0; i < 500; i++) {
-            list.add(new byte[1024 * 100]); //100KB
+            list.add(new byte[1024 * 100]); // 100KB
         }
     }
 }
