@@ -5,6 +5,7 @@ import java.util.List;
  * -verbose:gc
  * -XX:+PrintGC
  * -XX:+PrintGCDetails
+ * -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps
  */
 public class GCLogTest {
     public static void main(String[] args) {
