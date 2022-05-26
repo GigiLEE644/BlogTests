@@ -1,23 +1,23 @@
 import java.io.IOException;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
+import java.io.PipedReader;
+import java.io.PipedWriter;
 
-public class PipedInputOutputStreamTest {
+public class PipedReaderWriterTest {
     public static void main(String[] args) throws IOException {
-        final PipedInputStream pis = new PipedInputStream();
-        final PipedOutputStream pos = new PipedOutputStream();
+        PipedReader reader = new PipedReader();
+        PipedWriter writer = new PipedWriter();
 
-        pos.connect(pis);
-        // pis.connect(pos);
+        writer.connect(reader);
+        //reader.connect(writer);
 
         Thread t1 = new Thread(() -> {
             try {
-                pos.write("hello world".getBytes());
+                writer.write("hello world");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } finally {
                 try {
-                    pos.close();
+                    writer.close();
                 } catch (IOException e1) {
                     throw new RuntimeException(e1);
                 }
@@ -30,14 +30,14 @@ public class PipedInputOutputStreamTest {
 
         Thread t2 = new Thread(() -> {
             try {
-                byte[] bytes = pis.readAllBytes();
-
-                System.out.println(new String(bytes));
+                char[] chs = new char[1024];
+                reader.read(chs);
+                System.out.println(chs);
             } catch (IOException e1) {
                 throw new RuntimeException(e1);
             } finally {
                 try {
-                    pis.close();
+                    reader.close();
                 } catch (IOException e1) {
                     throw new RuntimeException(e1);
                 }
