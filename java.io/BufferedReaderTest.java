@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StringReader;
 
 public class BufferedReaderTest {
     public static void main(String[] args) throws IOException {
