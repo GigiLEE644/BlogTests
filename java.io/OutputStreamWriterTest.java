@@ -1,17 +1,17 @@
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 
 public class OutputStreamWriterTest {
     public static void main(String[] args) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        OutputStreamWriter writer = new OutputStreamWriter(baos);
+        String path = "/home/yan/github/BlogTests/greeting";
 
-        writer.write("this is a test!!");
-        writer.close();
-
-        byte[] bytes = baos.toByteArray();
-
-        System.out.println(new String(bytes));
+        try (OutputStreamWriter writer = new OutputStreamWriter(
+            new FileOutputStream(path), StandardCharsets.UTF_8)) {
+            writer.write("hello world");
+            writer.write(System.getProperty("line.separator"));
+        }
     }
 }
