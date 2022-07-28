@@ -1,17 +1,18 @@
 package com.example;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -30,18 +31,18 @@ public class ClientServerModeWithNetty {
             EventLoopGroup workerGroup = new NioEventLoopGroup();
             try {
                 ServerBootstrap b = new ServerBootstrap();
-                b.group(bossGroup, workerGroup)
-                        .channel(NioServerSocketChannel.class)
-                        .childHandler(new ChannelInitializer<SocketChannel>() {
-                            @Override
-                            public void initChannel(SocketChannel ch)
-                                    throws Exception {
-                                ch.pipeline().addLast(new RequestDecoder(),
-                                        new ResponseDataEncoder(),
-                                        new ProcessingHandler());
-                            }
-                        }).option(ChannelOption.SO_BACKLOG, 128)
-                        .childOption(ChannelOption.SO_KEEPALIVE, true);
+                b.group(bossGroup, workerGroup);
+                b.channel(NioServerSocketChannel.class);
+                b.childHandler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    public void initChannel(SocketChannel ch)
+                            throws Exception {
+                        ChannelPipeline p = ch.pipeline();
+                        p.addLast(new MessageEncoder());
+                        p.addLast(new MessageDecoder());
+                        p.addLast(new ServerHandler());
+                    }
+                });
 
                 ChannelFuture f = b.bind(port).sync();
                 f.channel().closeFuture().sync();
@@ -62,17 +63,22 @@ public class ClientServerModeWithNetty {
                 Bootstrap b = new Bootstrap();
                 b.group(workerGroup);
                 b.channel(NioSocketChannel.class);
-                b.option(ChannelOption.SO_KEEPALIVE, true);
                 b.handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch)
                             throws Exception {
-                        ch.pipeline().addLast(new RequestDataEncoder(),
-                                new ResponseDataDecoder(), new ClientHandler());
+                        ChannelPipeline p = ch.pipeline();
+                        p.addLast(new MessageEncoder());
+                        p.addLast(new MessageDecoder());
+                        p.addLast(new ClientHandler());
                     }
                 });
 
                 ChannelFuture f = b.connect(host, port).sync();
+
+                Channel channel = f.sync().channel();
+                channel.writeAndFlush(new Message(1, "hello, server"));
+                channel.flush();
 
                 f.channel().closeFuture().sync();
             } catch (Exception e) {
@@ -85,127 +91,86 @@ public class ClientServerModeWithNetty {
         new Thread(client).start();
     }
 
-    private static class RequestData {
-        private int intValue;
-        private String stringValue;
+    private static class Message {
+        private int id;
+        private String content;
 
-        public int getIntValue() {
-            return intValue;
+        public Message() {
+
         }
 
-        public void setIntValue(int intValue) {
-            this.intValue = intValue;
+        public Message(int id, String content) {
+            this.id = id;
+            this.content = content;
         }
 
-        public String getStringValue() {
-            return stringValue;
+        public int getId() {
+            return id;
         }
 
-        public void setStringValue(String stringValue) {
-            this.stringValue = stringValue;
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
         }
 
         @Override
         public String toString() {
-            return "RequestData [intValue=" + intValue + ", stringValue=" + stringValue + "]";
+            return "Message [id = " + id + ", content = " + content + "]";
         }
     }
 
-    private static class RequestDecoder extends ReplayingDecoder<RequestData> {
-        private final Charset charset = Charset.forName("UTF-8");
-
+    private static class MessageDecoder extends ReplayingDecoder<Message> {
         @Override
         protected void decode(ChannelHandlerContext ctx,
                 ByteBuf in, List<Object> out) throws Exception {
-            RequestData data = new RequestData();
-            data.setIntValue(in.readInt());
-            int strLen = in.readInt();
-            data.setStringValue(
-                    in.readCharSequence(strLen, charset).toString());
-            out.add(data);
+            Message message = new Message();
+            message.setId(in.readInt());
+            int len = in.readInt();
+            message.setContent(in.readCharSequence(len, Charset.forName("UTF-8")).toString());
+            out.add(message);
         }
     }
 
-    private static class RequestDataEncoder extends MessageToByteEncoder<RequestData> {
-        private final Charset charset = Charset.forName("UTF-8");
-
+    private static class MessageEncoder extends MessageToByteEncoder<Message> {
         @Override
         protected void encode(ChannelHandlerContext ctx,
-                RequestData msg, ByteBuf out) throws Exception {
-
-            out.writeInt(msg.getIntValue());
-            out.writeInt(msg.getStringValue().length());
-            out.writeCharSequence(msg.getStringValue(), charset);
-        }
-    }
-
-    private static class ResponseData {
-        private int intValue;
-
-        @Override
-        public String toString() {
-            return "ResponseData [intValue=" + intValue + "]";
-        }
-
-        public int getIntValue() {
-            return intValue;
-        }
-
-        public void setIntValue(int intValue) {
-            this.intValue = intValue;
-        }
-
-    }
-
-    private static class ResponseDataEncoder extends MessageToByteEncoder<ResponseData> {
-        @Override
-        protected void encode(ChannelHandlerContext ctx,
-                ResponseData msg, ByteBuf out) throws Exception {
-            out.writeInt(msg.getIntValue());
-        }
-    }
-
-    private static class ResponseDataDecoder extends ReplayingDecoder<ResponseData> {
-        @Override
-        protected void decode(ChannelHandlerContext ctx,
-                ByteBuf in, List<Object> out) throws Exception {
-
-            ResponseData data = new ResponseData();
-            data.setIntValue(in.readInt());
-            out.add(data);
+                Message message, ByteBuf out) throws Exception {
+            out.writeInt(message.getId());
+            out.writeInt(message.getContent().length());
+            out.writeCharSequence(message.getContent(), Charset.forName("UTF-8"));
         }
     }
 
     private static class ClientHandler extends ChannelInboundHandlerAdapter {
         @Override
-        public void channelActive(ChannelHandlerContext ctx)
+        public void channelRead(ChannelHandlerContext ctx, Object message)
                 throws Exception {
-            RequestData msg = new RequestData();
-            msg.setIntValue(123);
-            msg.setStringValue(
-                    "all work and no play makes jack a dull boy");
-            ChannelFuture future = ctx.writeAndFlush(msg);
-            future.get();
-        }
-
-        @Override
-        public void channelRead(ChannelHandlerContext ctx, Object msg)
-                throws Exception {
-            System.out.println((ResponseData) msg);
-            ctx.close();
+            System.out.println("Client receives response = " + (Message) message);
         }
     }
 
-    private static class ProcessingHandler extends ChannelInboundHandlerAdapter {
+    private static class ServerHandler extends ChannelInboundHandlerAdapter {
+        private List<Channel> channels = new ArrayList<Channel>();
+
         @Override
-        public void channelRead(ChannelHandlerContext ctx, Object msg)
+        public void channelActive(final ChannelHandlerContext ctx) {
+            this.channels.add(ctx.channel());
+        }
+
+        @Override
+        public void channelRead(ChannelHandlerContext ctx, Object message)
                 throws Exception {
-            RequestData requestData = (RequestData) msg;
-            ResponseData responseData = new ResponseData();
-            responseData.setIntValue(requestData.getIntValue() * 2);
-            ChannelFuture future = ctx.writeAndFlush(responseData);
-            future.addListener(ChannelFutureListener.CLOSE);
-            System.out.println(requestData);
+            System.out.println("Server receives request = " + (Message) message);
+            for (Channel ch : this.channels) {
+                ch.writeAndFlush(new Message(2, "hi, client"));
+            }
         }
     }
 }
