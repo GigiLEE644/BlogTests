@@ -27,6 +27,7 @@ public class ClientServerModeWithNetty {
         final String host = "localhost";
 
         Runnable server = () -> {
+            final String tName = Thread.currentThread().getName();
             EventLoopGroup bossGroup = new NioEventLoopGroup();
             EventLoopGroup workerGroup = new NioEventLoopGroup();
             try {
@@ -40,7 +41,7 @@ public class ClientServerModeWithNetty {
                         ChannelPipeline p = ch.pipeline();
                         p.addLast(new MessageEncoder());
                         p.addLast(new MessageDecoder());
-                        p.addLast(new ServerHandler());
+                        p.addLast(new ServerHandler(tName));
                     }
                 });
 
@@ -57,6 +58,7 @@ public class ClientServerModeWithNetty {
         new Thread(server).start();
 
         Runnable client = () -> {
+            final String clientName = Thread.currentThread().getName();
             EventLoopGroup workerGroup = new NioEventLoopGroup();
 
             try {
@@ -70,14 +72,14 @@ public class ClientServerModeWithNetty {
                         ChannelPipeline p = ch.pipeline();
                         p.addLast(new MessageEncoder());
                         p.addLast(new MessageDecoder());
-                        p.addLast(new ClientHandler());
+                        p.addLast(new ClientHandler(clientName));
                     }
                 });
 
                 ChannelFuture f = b.connect(host, port).sync();
 
                 Channel channel = f.sync().channel();
-                channel.writeAndFlush(new Message(1, "hello, server"));
+                channel.writeAndFlush(new Message(1, "hello server"));
                 channel.flush();
 
                 f.channel().closeFuture().sync();
@@ -149,28 +151,33 @@ public class ClientServerModeWithNetty {
     }
 
     private static class ClientHandler extends ChannelInboundHandlerAdapter {
+        private String clientName;
+
+        ClientHandler(String clientName) {
+            this.clientName = clientName;
+        }
+
         @Override
         public void channelRead(ChannelHandlerContext ctx, Object message)
                 throws Exception {
-            System.out.println("Client receives response = " + (Message) message);
+            String tName = Thread.currentThread().getName();
+            System.out.println(tName + " : Client (" + this.clientName + ") receives response = " + (Message) message);
         }
     }
 
     private static class ServerHandler extends ChannelInboundHandlerAdapter {
-        private List<Channel> channels = new ArrayList<Channel>();
+        private String serverName;
 
-        @Override
-        public void channelActive(final ChannelHandlerContext ctx) {
-            this.channels.add(ctx.channel());
+        ServerHandler(String serverName) {
+            this.serverName = serverName;
         }
 
         @Override
         public void channelRead(ChannelHandlerContext ctx, Object message)
                 throws Exception {
-            System.out.println("Server receives request = " + (Message) message);
-            for (Channel ch : this.channels) {
-                ch.writeAndFlush(new Message(2, "hi, client"));
-            }
+            String tName = Thread.currentThread().getName();
+            System.out.println(tName + " : Server (" + this.serverName + ") receives request = " + (Message) message);
+            ctx.channel().writeAndFlush(new Message(2, "hello client"));
         }
     }
 }
