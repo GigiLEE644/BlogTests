@@ -1,30 +1,30 @@
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CasWithAtomicInteger {
-    public static void main(String[] args) throws InterruptedException {
-        ExecutorService service = Executors.newFixedThreadPool(10);
+    public static void main(String[] args) {
+        AtomicInteger val = new AtomicInteger(0);
 
-        Counter counter = new Counter();
+        System.out.println();
 
-        for (int i = 0; i < 1000; i++) {
-            service.submit(counter::inc);
-        }
+        System.out.println("Previous value: " + val.get());
 
-        service.shutdown();
+        boolean res = val.compareAndSet(0, 6);
 
-        service.awaitTermination(10, TimeUnit.SECONDS);
+        checkResult(val, res);
 
-        System.out.println("sum = " + counter.sum.get());
+        System.out.println("Previous value: " + val.get());
+
+        res = val.compareAndSet(0, 0);
+
+        checkResult(val, res);
     }
 
-    private static class Counter {
-        private AtomicInteger sum = new AtomicInteger(0);
-
-        void inc() {
-            this.sum.getAndIncrement();
+    private static void checkResult(AtomicInteger val, boolean res) {
+        if (res) {
+            System.out.println("The value was updated and it is " + val.get());
+        } else {
+            System.out.println("The value was not updated");
         }
+        System.out.println();
     }
 }
