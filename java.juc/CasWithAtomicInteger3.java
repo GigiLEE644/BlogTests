@@ -3,7 +3,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CasWithAtomicInteger2 {
+public class CasWithAtomicInteger3 {
     public static void main(String[] args) throws InterruptedException {
         ExecutorService service = Executors.newFixedThreadPool(10);
 
@@ -24,13 +24,7 @@ public class CasWithAtomicInteger2 {
         private AtomicInteger sum = new AtomicInteger(0);
 
         void inc() {
-            while (true) {
-                int expectedValue = sum.get();
-                int newValue = expectedValue + 1;
-                if (sum.compareAndSet(expectedValue, newValue)) {
-                    return;
-                }
-            }
+            this.sum.getAndIncrement();
         }
     }
 }
