@@ -40,10 +40,3 @@ public class LockAPIReentrantLock2 {
         }
     }
 }
-
-/*
-Output :
-    yan@ubuntu:~/github/BlogTests$  /usr/bin/env /home/yan/Apps/jdk-17.0.3.1/bin/java -XX:+ShowCodeDetailsInExceptionMessages -cp /home/yan/.config/Code/User/workspaceStorage/cb6e219fa798ac2300babcaaca8a9a47/redhat.java/jdt_ws/BlogTests_e0c01ebd/bin LockAPIReentrantLock2 
-    sum = 1000
-    yan@ubuntu:~/github/BlogTests$
-*/
