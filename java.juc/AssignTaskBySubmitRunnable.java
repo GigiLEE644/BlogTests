@@ -10,7 +10,7 @@ public class AssignTaskBySubmitRunnable {
         ExecutorService es = Executors.newFixedThreadPool(3);
 
         try {
-            List<Future> futures = new ArrayList<>();
+            List<Future<?>> futures = new ArrayList<>();
 
             for (int i = 0; i < 10; i++) {
                 final Integer taskNumber = i;
