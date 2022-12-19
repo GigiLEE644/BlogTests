@@ -15,22 +15,26 @@ public class AssignTaskByScheduleAtFixedRate {
 
             ScheduledFuture<?> future = es.scheduleAtFixedRate(
                     () -> {
-                        counter.getAndIncrement();
+                        int current = counter.incrementAndGet();
                         System.out.println(Thread.currentThread().getName() +
                                 " : increases counter by 1 at : "
-                                + new Timestamp(System.currentTimeMillis()));
+                                + new Timestamp(System.currentTimeMillis())
+                                + " , current counter value = " + current);
                     },
                     3,
                     1,
                     TimeUnit.SECONDS);
+
+            System.out.println("Task has been assigned to pool at : " + new Timestamp(System.currentTimeMillis()));
+
             while (true) {
                 int current = counter.get();
-                System.out.println("current counter value is :" + current);
-                Thread.sleep(1000);
                 if (current == 5) {
                     System.out.println("Count is 5, cancel the scheduledFuture!");
                     future.cancel(true);
                     break;
+                } else {
+                    Thread.sleep(1000);
                 }
             }
         } finally {
