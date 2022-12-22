@@ -20,18 +20,23 @@ public class AssignTaskByScheduleWithFixedDelay {
                                 " : increases counter by 1 at : "
                                 + new Timestamp(System.currentTimeMillis())
                                 + " , current counter value = " + current);
+                        try {
+                            TimeUnit.SECONDS.sleep(1);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     },
                     3,
-                    1,
+                    2,
                     TimeUnit.SECONDS);
 
             System.out.println("Task has been assigned to pool at : " + new Timestamp(System.currentTimeMillis()));
 
             while (true) {
                 int current = counter.get();
-                if (current == 5) {
-                    System.out.println("Count is 5, cancel the scheduledFuture!");
-                    future.cancel(true);
+                if (current >= 5) {
+                    System.out.println("Count >= 5, cancel the scheduledFuture!");
+                    future.cancel(false);
                     break;
                 } else {
                     Thread.sleep(1000);
