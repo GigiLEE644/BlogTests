@@ -1,16 +1,19 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveAction;
+import java.util.stream.IntStream;
 
 public class ForkJoinPoolTest2 {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         ForkJoinPool pool = ForkJoinPool.commonPool();
 
         try {
-            CustomRecursiveAction action = new CustomRecursiveAction("hello world");
+            int[] numbers = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            CustomRecursiveAction action = new CustomRecursiveAction(numbers);
             pool.execute(action);
         } finally {
             pool.shutdown();
@@ -20,38 +23,36 @@ public class ForkJoinPoolTest2 {
     }
 
     static class CustomRecursiveAction extends RecursiveAction {
-        private String workload = "";
-        private static final int THRESHOLD = 4;
+        private int[] arr;
 
-        public CustomRecursiveAction(String workload) {
-            this.workload = workload;
+        private static final int THRESHOLD = 3;
+
+        public CustomRecursiveAction(int[] arr) {
+            this.arr = arr;
         }
 
         @Override
         protected void compute() {
-            if (workload.length() > THRESHOLD) {
+            if (arr.length > THRESHOLD) {
                 ForkJoinTask.invokeAll(createSubtasks());
             } else {
-                processing(workload);
+                processing(arr);
             }
         }
 
         private List<CustomRecursiveAction> createSubtasks() {
             List<CustomRecursiveAction> subtasks = new ArrayList<>();
 
-            String partOne = workload.substring(0, workload.length() / 2);
-            String partTwo = workload.substring(workload.length() / 2, workload.length());
-
-            subtasks.add(new CustomRecursiveAction(partOne));
-            subtasks.add(new CustomRecursiveAction(partTwo));
+            subtasks.add(new CustomRecursiveAction(
+                    Arrays.copyOfRange(arr, 0, arr.length / 2)));
+            subtasks.add(new CustomRecursiveAction(
+                    Arrays.copyOfRange(arr, arr.length / 2, arr.length)));
 
             return subtasks;
         }
 
-        private void processing(String work) {
-            String result = work.toUpperCase();
-            System.out.println("This result - (" + result + ") - was processed by "
-                    + Thread.currentThread().getName());
+        private void processing(int[] arr) {
+            IntStream.of(arr).forEach(System.out::println);
         }
     }
 }
