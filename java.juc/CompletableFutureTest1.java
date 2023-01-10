@@ -1,19 +1,31 @@
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class CompletableFutureTest1 {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        CompletableFuture<String> completableFuture = new CompletableFuture<>();
+        CompletableFuture<String> cf = new CompletableFuture<>();
 
-        Executors.newCachedThreadPool().submit(() -> {
-            Thread.sleep(500);
-            completableFuture.complete("Hello");
-            return null;
-        });
+        ExecutorService pool = Executors.newSingleThreadExecutor();
 
-        String result = completableFuture.get();
+        try {
+            pool.submit(() -> {
+                String greeting = "hello world";
 
-        System.out.println(result);
+                try {
+                    TimeUnit.SECONDS.sleep(10);
+
+                    return greeting;
+                } finally {
+                    cf.complete(greeting);
+                }
+            });
+        } finally {
+            pool.shutdown();
+        }
+
+        System.out.println(cf.get());
     }
 }
