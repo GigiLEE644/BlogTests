@@ -7,20 +7,14 @@ public class CompletableFutureTest2 {
         // CompletableFuture.completedFuture(Thread.currentThread().getName() + " :
         // hello world");
 
-        CompletableFuture<String> cf = CompletableFuture.supplyAsync(() -> {
-            return Thread.currentThread().getName() + " : hello world";
-        });
+        CompletableFuture.supplyAsync(() -> Thread.currentThread().getName() + " : hello world")
+                .thenApply(g -> Thread.currentThread().getName() + " : " + g)
+                .thenAccept(g -> System.out.println(Thread.currentThread().getName() + " : " + g));
 
-        System.out.println(cf.get());
+        System.out.println();
 
-        cf = cf.thenApply(g -> {
-            return Thread.currentThread().getName() + " : " + g;
-        });
-
-        System.out.println(cf.get());
-
-        cf.thenRunAsync(() -> {
-            System.out.println(Thread.currentThread().getName());
-        });
+        CompletableFuture.supplyAsync(() -> Thread.currentThread().getName() + " : hello world")
+                .thenCompose(g -> CompletableFuture.supplyAsync(() -> Thread.currentThread().getName() + " : " + g))
+                .thenAccept(g -> System.out.println(Thread.currentThread().getName() + " : " + g));
     }
 }
