@@ -12,14 +12,12 @@ public class CompletableFutureTest1 {
 
         try {
             pool.submit(() -> {
-                String greeting = "hello world";
-
                 try {
-                    TimeUnit.SECONDS.sleep(10);
-
-                    return greeting;
+                    TimeUnit.SECONDS.sleep(5);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 } finally {
-                    cf.complete(greeting);
+                    cf.complete("hello world");
                 }
             });
         } finally {
@@ -29,3 +27,8 @@ public class CompletableFutureTest1 {
         System.out.println(cf.get());
     }
 }
+
+/*
+    Output :
+        hello world
+ */
