@@ -27,8 +27,3 @@ public class CompletableFutureTest1 {
         System.out.println(cf.get());
     }
 }
-
-/*
-    Output :
-        hello world
- */
