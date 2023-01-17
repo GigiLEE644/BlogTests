@@ -13,8 +13,8 @@ public class CompletableFutureTest2 {
 
         CompletableFuture
                 .supplyAsync(() -> "[ 1. " + Thread.currentThread().getName() + " : supplyAsync = hello world ]")
-                .thenApplyAsync(g -> "[ 2. " + Thread.currentThread().getName() + " : thenApply = " + g + " ]")
+                .thenApplyAsync(g -> "[ 2. " + Thread.currentThread().getName() + " : thenApplyAsync = " + g + " ]")
                 .thenAcceptAsync(g -> System.out
-                        .println("[ 3. " + Thread.currentThread().getName() + " : thenAccept = " + g + " ]"));
+                        .println("[ 3. " + Thread.currentThread().getName() + " : thenAcceptAsync = " + g + " ]"));
     }
 }
