@@ -17,7 +17,7 @@ public class CompletableFutureTest1 {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    cf.complete("hello world");
+                    cf.complete(Thread.currentThread().getName() + " : hello world");
                 }
             });
         } finally {
