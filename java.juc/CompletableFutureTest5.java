@@ -3,23 +3,23 @@ import java.util.concurrent.ExecutionException;
 
 public class CompletableFutureTest5 {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        CompletableFuture<String> f1 = CompletableFuture
-                .supplyAsync(() -> Thread.currentThread().getName() + " : hello");
+        CompletableFuture<String> f = CompletableFuture
+                .supplyAsync(() -> {
+                    // int result = 1 / 0;
+                    return Thread.currentThread().getName() + " : hello world";
+                })
+                .handle((g, t) -> {
+                    if (t == null) {
+                        return Thread.currentThread().getName() + " : " + g;
+                    }
 
-        CompletableFuture<String> f2 = CompletableFuture
-                .supplyAsync(() -> Thread.currentThread().getName() + " : world");
+                    return Thread.currentThread().getName() + " : " + t.getCause().getMessage();
+                });
 
-        CompletableFuture<Void> f = CompletableFuture.allOf(f1, f2);
+        // f.completeExceptionally(new RuntimeException("this is an exception"));
 
-        f.get();
+        String greeting = f.get();
 
-        // String r1 = f1.isDone() ? f1.join() : "";
-        // String r2 = f2.isDone() ? f2.join() : "";
-
-        String r1 = f1.isDone() ? f1.join() : "";
-        String r2 = f2.isDone() ? f2.join() : "";
-
-        System.out.println(r1);
-        System.out.println(r2);
+        System.out.println(greeting);
     }
 }

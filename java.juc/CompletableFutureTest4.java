@@ -1,25 +1,26 @@
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CompletableFutureTest4 {
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
-        CompletableFuture<String> f = CompletableFuture
-                .supplyAsync(() -> {
-                    // int result = 1 / 0;
-                    return Thread.currentThread().getName() + " : hello world";
-                })
-                .handle((g, t) -> {
-                    if (t == null) {
-                        return Thread.currentThread().getName() + " : " + g;
-                    }
+        public static void main(String[] args) throws InterruptedException, ExecutionException {
+                ExecutorService es = Executors.newSingleThreadExecutor();
 
-                    return Thread.currentThread().getName() + " : " + t.getCause().getMessage();
-                });
-
-        // f.completeExceptionally(new RuntimeException("this is an exception"));
-
-        String greeting = f.get();
-
-        System.out.println(greeting);
-    }
+                try {
+                        CompletableFuture
+                                        .supplyAsync(() -> "[ 1. " + Thread.currentThread().getName()
+                                                        + " : supplyAsync = hello world ]", es)
+                                        .thenApplyAsync(g -> "[ 2. " + Thread.currentThread().getName()
+                                                        + " : thenApplyAsync = " + g + " ]", es)
+                                        .thenAcceptAsync(g -> System.out
+                                                        .println("[ 3. " + Thread.currentThread().getName()
+                                                                        + " : thenAcceptAsync = " + g
+                                                                        + " ]"),
+                                                        es);
+                } finally {
+                        Thread.sleep(3000);
+                        es.shutdown();
+                }
+        }
 }

@@ -1,32 +1,17 @@
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class CompletableFutureTest3 {
         public static void main(String[] args) throws InterruptedException, ExecutionException {
                 CompletableFuture
                                 .supplyAsync(() -> "[ 1. " + Thread.currentThread().getName()
                                                 + " : supplyAsync = hello world ]")
-                                .thenApply(g -> "[ 2. " + Thread.currentThread().getName() + " : thenApply = " + g
-                                                + " ]")
-                                .thenAccept(g -> System.out
-                                                .println("[ 3. " + Thread.currentThread().getName() + " : thenAccept = "
-                                                                + g + " ]"));
-
-                System.out.println();
-
-                ExecutorService es = Executors.newSingleThreadExecutor();
-
-                CompletableFuture
-                                .supplyAsync(() -> "[ 1. " + Thread.currentThread().getName()
-                                                + " : supplyAsync = hello world ]", es)
-                                .thenApplyAsync(g -> "[ 2. " + Thread.currentThread().getName()
-                                                + " : thenApplyAsync = " + g + " ]", es)
+                                .thenApplyAsync(g -> "[ 2. " + Thread.currentThread().getName() + " : thenApplyAsync = "
+                                                + g + " ]")
                                 .thenAcceptAsync(g -> System.out
                                                 .println("[ 3. " + Thread.currentThread().getName()
-                                                                + " : thenAcceptAsync = " + g
-                                                                + " ]"),
-                                                es);
+                                                                + " : thenAcceptAsync = " + g + " ]"));
+
+                Thread.sleep(3000);
         }
 }
