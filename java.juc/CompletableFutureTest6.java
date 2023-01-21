@@ -11,10 +11,7 @@ public class CompletableFutureTest6 {
 
         CompletableFuture<Void> f = CompletableFuture.allOf(f1, f2);
 
-        f.get();
-
-        // String r1 = f1.isDone() ? f1.join() : "";
-        // String r2 = f2.isDone() ? f2.join() : "";
+        f.join();
 
         String r1 = f1.isDone() ? f1.join() : "";
         String r2 = f2.isDone() ? f2.join() : "";
