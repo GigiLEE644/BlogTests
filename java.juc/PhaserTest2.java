@@ -4,45 +4,42 @@ import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
 
 public class PhaserTest2 {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String args[]) throws Exception {
         // create an executor service
         ExecutorService executorService = Executors.newFixedThreadPool(15);
-        Phaser phaser = new Phaser(2);
+        // create an instance of Phaser with 3 registered parties
+        Phaser phaser = new Phaser() {
+            protected boolean onAdvance(int phase, int registeredParties) {
+                // print the current phase BEFORE advancing and the registered parties
+                System.out.println("\n" + Thread.currentThread().getName()
+                        + " is performing onAdvance action. Advancing from phase " + phase + " with registeredParties "
+                        + registeredParties);
+                // return true when 5 iterations are complete
+                return phase >= 4 || registeredParties == 0;
+            }
+        };
         try {
-            // register main thread with the phaser
-            int arrivalPhase = phaser.register();
-            // simulate work by two threads that synchronize 10 times at the barrier
-            for (int i = 0; i < 2; i++) {
+            // register the threads that'll synchronize on the barrier
+            phaser.bulkRegister(3);
+            // submit three tasks that'll synchronize on our instance of `MyPhaser`
+            for (int i = 0; i < 3; i++) {
                 executorService.submit(new Runnable() {
                     @Override
                     public void run() {
-                        for (int i = 0; i < 15; i++) {
-                            phaser.arriveAndAwaitAdvance();
-                            // simulate worker threads execute some other tasks after 10 iterations
-                            if (i > 10) {
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException ie) {
-                                    // ignore for now
-                                }
-                            }
+                        // repeatedly synchronize until the barrier is in terminated state
+                        while (!phaser.isTerminated()) {
+                            int phase = phaser.arriveAndAwaitAdvance();
+                            System.out.println(Thread.currentThread().getName() + " has advanced to phase " + phase);
                         }
-                        System.out.println(Thread.currentThread().getName() + " proceeding forward.");
                     }
                 });
             }
-            while (arrivalPhase < 10) {
-                arrivalPhase = phaser.arriveAndAwaitAdvance();
-                System.out.println("main thread arrived at phase " + arrivalPhase);
-            }
-            // non-blocking call
-            phaser.arriveAndDeregister();
-            System.out.println("main thread past the barrier");
         } finally {
             // remember to shutdown the executor
             executorService.shutdown();
             executorService.awaitTermination(1, TimeUnit.HOURS);
         }
+        System.out.println("is terminated " + phaser.isTerminated());
     }
 }
 
