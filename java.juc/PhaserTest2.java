@@ -7,40 +7,68 @@ public class PhaserTest2 {
     public static void main(String args[]) throws Exception {
         // create an executor service
         ExecutorService executorService = Executors.newFixedThreadPool(15);
-        // create an instance of Phaser with 3 registered parties
-        Phaser phaser = new Phaser() {
-            protected boolean onAdvance(int phase, int registeredParties) {
-                // print the current phase BEFORE advancing and the registered parties
-                System.out.println("\n" + Thread.currentThread().getName()
-                        + " is performing onAdvance action. Advancing from phase " + phase + " with registeredParties "
-                        + registeredParties);
-                // return true when 5 iterations are complete
-                return phase >= 4 || registeredParties == 0;
-            }
-        };
+        // initially create a parent phaser which has no registered party
+        Phaser phaserParent = new Phaser(0);
+        // producer phaser has three parties, one for each producer
+        Phaser producersPhaser = new Phaser(phaserParent, 3);
+        // consumer phaser has five parties, including the three producers
+        // so that we can have the consumers wait until the producers are done
+        Phaser consumerPhaser = new Phaser(phaserParent, 2);
+        phaserParent.register();
+        System.out.println("Registered party count for parentPhaser " + phaserParent.getRegisteredParties());
         try {
-            // register the threads that'll synchronize on the barrier
-            phaser.bulkRegister(3);
-            // submit three tasks that'll synchronize on our instance of `MyPhaser`
+            // create 3 producer threads
             for (int i = 0; i < 3; i++) {
                 executorService.submit(new Runnable() {
                     @Override
                     public void run() {
-                        // repeatedly synchronize until the barrier is in terminated state
-                        while (!phaser.isTerminated()) {
-                            int phase = phaser.arriveAndAwaitAdvance();
-                            System.out.println(Thread.currentThread().getName() + " has advanced to phase " + phase);
-                        }
+                        // all producers reach barrier and then start producing
+                        producersPhaser.arriveAndAwaitAdvance();
+                        // ... work to produce.
+                        System.out.println(Thread.currentThread().getName() + " producer finished at parent phase "
+                                + phaserParent.getPhase());
+                        // Now wait for consumers to get done.
+                        producersPhaser.arrive();
+                        phaserParent.awaitAdvance(1);
+                        // unblock the main thread
+                        producersPhaser.arrive();
                     }
                 });
             }
+            // create two consumer threads
+            for (int i = 0; i < 2; i++) {
+                executorService.submit(new Runnable() {
+                    @Override
+                    public void run() {
+                        // wait for producers to get done
+                        while (phaserParent.getPhase() <= 1) {
+                            consumerPhaser.arriveAndAwaitAdvance();
+                        }
+                        // ... work to consume
+                        System.out.println(Thread.currentThread().getName() + " consumer finished at parent phase "
+                                + phaserParent.getPhase());
+                        // Now unblock the main thread
+                        consumerPhaser.arrive();
+                    }
+                });
+            }
+            // get the producers going
+            phaserParent.arrive();
+            // wait for the producers to be done
+            phaserParent.awaitAdvance(0);
+            // get the consumers going
+            phaserParent.arrive();
+            // wait for consumers to get done
+            phaserParent.awaitAdvance(1);
+            // wait for both consumer and producers to exit
+            phaserParent.arriveAndAwaitAdvance();
+            System.out.println("main thread existing at parent phase " + phaserParent.getPhase());
         } finally {
             // remember to shutdown the executor
             executorService.shutdown();
             executorService.awaitTermination(1, TimeUnit.HOURS);
         }
-        System.out.println("is terminated " + phaser.isTerminated());
+
     }
 }
-
 // https://medium.com/double-pointer/guide-to-phaser-in-java-efd810e4fc1b
