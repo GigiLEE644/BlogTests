@@ -4,33 +4,23 @@ import java.util.concurrent.TimeUnit;
 
 public class PhaserTest1 {
     public static void main(String[] args) throws InterruptedException {
-        Phaser ph = new Phaser(1);
+        Phaser ph = new Phaser(3);
 
         log("start");
 
-        new Thread(new Task(ph)).start();
-        new Thread(new Task(ph)).start();
-
-        ph.arriveAndAwaitAdvance();
-
-        log("done");
-    }
-
-    private static class Task implements Runnable {
-        private Phaser ph;
-
-        Task(Phaser ph) {
-            this.ph = ph;
-            this.ph.register();
-        }
-
-        @Override
-        public void run() {
+        Runnable r = () -> {
             log("start");
             sleep(3);
             log("done");
             ph.arrive();
-        }
+        };
+
+        new Thread(r).start();
+        new Thread(r).start();
+
+        ph.arriveAndAwaitAdvance();
+
+        log("done");
     }
 
     private static void log(String message) {
