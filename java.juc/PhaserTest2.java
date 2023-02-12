@@ -37,4 +37,3 @@ public class PhaserTest2 {
         };
     }
 }
-// https://medium.com/double-pointer/guide-to-phaser-in-java-efd810e4fc1b
