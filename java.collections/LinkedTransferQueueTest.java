@@ -7,26 +7,36 @@ public class LinkedTransferQueueTest {
         LinkedTransferQueue<String> queue = new LinkedTransferQueue<>();
 
         Runnable producer = () -> {
+            String greeting = "hello world";
+            System.out.println("[" + Instant.now() + "] " + Thread.currentThread().getName() + " : transfering");
             try {
-                String greeting = "hello world";
-                System.out.println(
-                        "[" + Instant.now() + "] " + Thread.currentThread().getName() + " : transfering ...");
                 queue.transfer(greeting);
-                System.out.println("[" + Instant.now() + "] " + Thread.currentThread().getName()
-                        + " : transfered " + greeting);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("[" + Instant.now() + "] " + Thread.currentThread().getName() + " : transfering "
+                    + greeting + " done");
+        };
+
+        Runnable consumer = () -> {
+            try {
+                TimeUnit.SECONDS.sleep(3);
+                String greeting = queue.take();
+                System.out.println(
+                        "[" + Instant.now() + "] " + Thread.currentThread().getName() + " : taking " + greeting
+                                + " done");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         };
 
-        new Thread(producer, "producer").start();
+        Thread p1 = new Thread(producer);
+        Thread c1 = new Thread(consumer);
 
-        TimeUnit.SECONDS.sleep(3);
+        p1.start();
+        c1.start();
 
-        String greeting = queue.take();
-
-        TimeUnit.SECONDS.sleep(1);
-
-        System.out.println("[" + Instant.now() + "] " + Thread.currentThread().getName() + " : " + greeting);
+        p1.join();
+        c1.join();
     }
 }
