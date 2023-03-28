@@ -35,10 +35,10 @@ public class HashtableTest {
 
         System.out.println();
 
-        Enumeration<String> keys = fruitPrices.keys();
+        Enumeration<String> fruits = fruitPrices.keys();
 
-        while (keys.hasMoreElements()) {
-            String fruit = keys.nextElement();
+        while (fruits.hasMoreElements()) {
+            String fruit = fruits.nextElement();
             Integer price = fruitPrices.get(fruit);
 
             System.out.println(fruit + " : " + price);
