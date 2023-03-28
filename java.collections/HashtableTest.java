@@ -1,3 +1,4 @@
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Map.Entry;
 import java.util.Iterator;
@@ -22,12 +23,25 @@ public class HashtableTest {
             System.out.println("key can not be null");
         }
 
+        System.out.println();
+
         Iterator<Entry<String, Integer>> it = fruitPrices.entrySet().iterator();
 
         while (it.hasNext()) {
             Entry<String, Integer> fruit = it.next();
 
             System.out.println(fruit.getKey() + " : " + fruit.getValue());
+        }
+
+        System.out.println();
+
+        Enumeration<String> keys = fruitPrices.keys();
+
+        while (keys.hasMoreElements()) {
+            String fruit = keys.nextElement();
+            Integer price = fruitPrices.get(fruit);
+
+            System.out.println(fruit + " : " + price);
         }
     }
 }
