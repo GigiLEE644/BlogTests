@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class LinkedListTest {
     public static void main(String[] args) {
@@ -11,6 +12,12 @@ public class LinkedListTest {
         list.add(2, "E");
 
         System.out.println(list);
+
+        ListIterator<String> it = list.listIterator();
+        while (it.hasNext()) {
+            String element = it.next();
+            System.out.println(element);
+        }
 
         list.remove("B");
         String removed = list.remove(3);
