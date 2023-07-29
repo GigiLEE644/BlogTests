@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class JDBCTest1 {
+public class JDBCTest {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         String url = "jdbc:mysql://localhost:3306/students";
         String username = "gigi";
