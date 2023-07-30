@@ -1,8 +1,5 @@
-import java.lang.reflect.InvocationTargetException;
-
 public class ClassTest1 {
-    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, SecurityException,
-            InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public static void main(String[] args) throws ClassNotFoundException {
         // From class
         Class<?> clazz = String.class;
 
