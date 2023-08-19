@@ -8,11 +8,9 @@ public class ClassTest12 {
 
         Class<?> clazz = p.getClass();
 
-        Method method = clazz.getMethod("toString", null);
+        Method method = clazz.getMethod("speak", String.class);
 
-        String s = (String) method.invoke(p, null);
-
-        System.out.println(s);
+        method.invoke(p, "hello world");
     }
 
     private static class Person {
@@ -27,6 +25,10 @@ public class ClassTest12 {
         @Override
         public String toString() {
             return "Person [name=" + name + ", age=" + age + "]";
+        }
+
+        public void speak(String words) {
+            System.out.println(this + " : " + words);
         }
     }
 }
