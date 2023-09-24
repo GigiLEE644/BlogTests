@@ -11,11 +11,9 @@ public class ExceptionTest2 {
 
         Class<?> clazz = p.getClass();
 
-        Field name = clazz.getDeclaredField("name");
-        Field age = clazz.getDeclaredField("age");
+        Field name = clazz.getDeclaredField("nam");
 
         System.out.println("name = " + name.get(p));
-        System.out.println("age = " + age.get(p));
     }
 
     private static class Person {
