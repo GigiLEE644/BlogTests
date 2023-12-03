@@ -1,10 +1,12 @@
 public class GenericsTest5 {
     public static void main(String[] args) {
-        Pair<String, Integer> tom = new Pair<>("tom", 18);
-        Pair<String, Integer> jerry = new Pair<>("jerry", 16);
+        Pair<String, String> name = new Pair<>("name", "tom");
 
-        System.out.println(tom);
-        System.out.println(jerry);
+        System.out.println(name);
+
+        Pair<String, Integer> age = new Pair<>("age", 18);
+
+        System.out.println(age);
     }
 
     private static class Pair<K, V> {
