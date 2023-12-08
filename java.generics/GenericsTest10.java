@@ -1,6 +1,7 @@
 public class GenericsTest10 {
     public static void main(String[] args) {
-        display(new Child());
+        Child child = new Child();
+        display(child);
     }
 
     private static class Parent {

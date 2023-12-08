@@ -1,8 +1,7 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class GenericsTest11 {
+public class GenericsTest12 {
     public static void main(String[] args) {
         List<Child> children = new ArrayList<>();
         children.add(new Child());
@@ -18,7 +17,7 @@ public class GenericsTest11 {
 
     }
 
-    private static void display(List<Parent> objs) {
+    private static void display(List<? extends Parent> objs) {
         System.out.println("Parent List :");
         objs.forEach(System.out::println);
     }
