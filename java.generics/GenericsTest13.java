@@ -19,7 +19,7 @@ public class GenericsTest13 {
         System.out.println(max(ss));
     }
 
-    private static class Person implements Comparable<Person>, Serializable {
+    private static class Person implements Comparable<Person>, Serializable, Cloneable {
         Integer age;
         String name;
 
@@ -61,7 +61,7 @@ public class GenericsTest13 {
         }
     }
 
-    private static <T extends Comparable<? super T> & Serializable> T max(List<T> elements) {
+    private static <T extends Comparable<? super T> & Serializable & Cloneable> T max(List<T> elements) {
         T max = elements.get(0);
 
         for (int i = 0; i < elements.size(); i++) {
