@@ -5,6 +5,9 @@ public class GenericsTest7 {
 
         System.out.println("double min = " + min(1d, 2d));
         System.out.println("double max = " + max(1d, 2d));
+
+        System.out.println("float min = " + GenericsTest7.<Float>min(1f, 2f));
+        System.out.println("float max = " + GenericsTest7.<Float>max(1f, 2f));
     }
 
     private static <T extends Comparable<T>> T min(T a, T b) {
