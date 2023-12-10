@@ -1,18 +1,17 @@
 public class GenericsTest10 {
     public static void main(String[] args) {
-        Child child = new Child();
-        display(child);
+        Dog dog = new Dog();
+
+        Animal animal = dog;
+
+        System.out.println(dog == animal);
     }
 
-    private static class Parent {
+    private static class Animal {
 
     }
 
-    private static class Child extends Parent {
+    private static class Dog extends Animal {
 
-    }
-
-    private static void display(Parent obj) {
-        System.out.println("Parent : " + obj);
     }
 }

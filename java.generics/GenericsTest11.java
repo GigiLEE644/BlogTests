@@ -1,25 +1,23 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class GenericsTest11 {
     public static void main(String[] args) {
-        List<Child> children = new ArrayList<>();
-        children.add(new Child());
+        List<Dog> dogs = new ArrayList<>();
 
-        display(children);
+        // Type mismatch : cannot convert from List<Dog> to List<Animal>
+        // List<Animal> animals = dogs;
+
+        List<? extends Animal> animals = dogs;
+
+        System.out.println(animals == dogs);
     }
 
-    private static class Parent {
+    private static class Animal {
 
     }
 
-    private static class Child extends Parent {
+    private static class Dog extends Animal {
 
-    }
-
-    private static void display(List<Parent> objs) {
-        System.out.println("Parent List :");
-        objs.forEach(System.out::println);
     }
 }

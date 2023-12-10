@@ -3,22 +3,21 @@ import java.util.List;
 
 public class GenericsTest12 {
     public static void main(String[] args) {
-        List<Child> children = new ArrayList<>();
-        children.add(new Child());
+        List<Dog> dogs = new ArrayList<>();
 
-        display(children);
+        // Type mismatch : cannot convert from List<Dog> to List<Animal>
+        // List<Animal> animals = dogs;
+
+        List<? super Dog> animals = dogs;
+
+        System.out.println(animals == dogs);
     }
 
-    private static class Parent {
+    private static class Animal {
 
     }
 
-    private static class Child extends Parent {
+    private static class Dog extends Animal {
 
-    }
-
-    private static void display(List<? extends Parent> objs) {
-        System.out.println("Parent List :");
-        objs.forEach(System.out::println);
     }
 }
