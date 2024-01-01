@@ -1,5 +1,6 @@
 arthas-output
 .vscode
+.metals
 # Compiled class file
 *.class
 
