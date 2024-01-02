@@ -1,6 +1,9 @@
 public class Java8NewFeaturesTest2 {
     public static void main(String[] args) {
-        MyComparator c = (a, b) -> {
+        int x = 1;
+        int y = 2;
+
+        compare((a, b) -> {
             if (a > b) {
                 System.out.println(a + " is bigger than " + b);
             } else if (a == b) {
@@ -8,9 +11,11 @@ public class Java8NewFeaturesTest2 {
             } else {
                 System.out.println(a + " is smaller than " + b);
             }
-        };
+        }, x, y);
+    }
 
-        c.compare(1, 2);
+    private static void compare(MyComparator c, int x, int y) {
+        c.compare(x, y);
     }
 
     @FunctionalInterface
