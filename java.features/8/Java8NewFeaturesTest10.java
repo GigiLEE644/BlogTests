@@ -1,34 +1,31 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+import java.util.Arrays;
 
 public class Java8NewFeaturesTest10 {
     public static void main(String[] args) {
-        List<String> names = new ArrayList<>();
+        List<String> messages = Arrays.asList("hello", "world");
 
-        names.add("tom");
-        names.add("jerry");
-        names.add("spike");
-        names.add("tyke");
+        // Function<List<String>, Displayer> f = l -> new Displayer(l);
 
-        Function<String, User> f = User::new;
+        Function<List<String>, Displayer> f = Displayer::new;
 
-        for (String name : names) {
-            User user = f.apply(name);
-            System.out.println(user);
-        }
+        Displayer d = f.apply(messages);
+
+        d.display();
     }
 
-    private static class User {
-        private String name;
+    private static class Displayer {
+        private List<String> messages;
 
-        public User(String name) {
-            this.name = name;
+        Displayer(List<String> messages) {
+            this.messages = messages;
         }
 
-        @Override
-        public String toString() {
-            return "User [name=" + name + "]";
+        void display() {
+            for (int i = 0; i < this.messages.size(); i++) {
+                System.out.println(this.messages.get(i));
+            }
         }
     }
 }

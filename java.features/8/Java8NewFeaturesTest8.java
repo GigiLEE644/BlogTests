@@ -6,12 +6,16 @@ public class Java8NewFeaturesTest8 {
     public static void main(String[] args) {
         List<String> messages = Arrays.asList("hello", "world");
 
-        Displayer displayer = new Displayer();
+        Displayer d = new Displayer();
 
-        handle(messages, displayer::display);
-    }
+        /*
+         * Consumer<List<String>> c = l -> {
+         *      d.display(l);
+         * };
+         */
 
-    private static void handle(List<String> messages, Consumer<List<String>> c) {
+        Consumer<List<String>> c = d::display;
+
         c.accept(messages);
     }
 

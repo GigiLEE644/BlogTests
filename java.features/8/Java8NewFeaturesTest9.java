@@ -1,47 +1,29 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 public class Java8NewFeaturesTest9 {
     public static void main(String[] args) {
-        List<String> words1 = new ArrayList<String>();
-        words1.add("hello");
+        List<String> messages = Arrays.asList("hello", "world");
 
-        List<String> words2 = new ArrayList<String>();
-        words2.add("world");
+        Displayer d = new Displayer();
 
-        Message message1 = new Message(words1);
+        /*
+         * BiConsumer<Displayer, List<String>> c = (d, l) -> {
+         *      d.display(l);
+         * };
+         */
 
-        Message message2 = new Message(words2);
+        BiConsumer<Displayer, List<String>> c = Displayer::display;
 
-        Merger m = Message::merge;
-
-        m.merge(message1, message2);
-
-        message1.read();
+        c.accept(d, messages);
     }
 
-    @FunctionalInterface
-    private interface Merger {
-        void merge(Message m1, Message m2);
-    }
-
-    private static class Message {
-        private List<String> words;
-
-        public Message(List<String> words) {
-            this.words = words;
-        }
-
-        void merge(Message m) {
-            this.words.addAll(m.words);
-        }
-
-        void read() {
-            for (String word : words) {
-                System.out.print(word);
-                System.out.print(" ");
+    private static class Displayer {
+        void display(List<String> l) {
+            for (int i = 0; i < l.size(); i++) {
+                System.out.println(l.get(i));
             }
-            System.out.println();
         }
     }
 }
