@@ -1,6 +1,6 @@
 import java.util.stream.Stream;
 
-public class Java8NewFeaturesTest27 {
+public class Java8NewFeaturesTest29 {
     public static void main(String[] args) {
         Integer[] arr = { 1, 3, 4, 2 };
 
@@ -8,7 +8,7 @@ public class Java8NewFeaturesTest27 {
 
         System.out.println();
 
-        sort(Stream.of(arr).sequential()).forEach(System.out::println);
+        sort(Stream.of(arr).parallel()).forEach(System.out::println);
     }
 
     private static Stream<Integer> sort(Stream<Integer> s) {
