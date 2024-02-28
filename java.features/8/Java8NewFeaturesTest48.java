@@ -10,8 +10,16 @@ public class Java8NewFeaturesTest48 {
 
         System.out.println("max = " + max.get());
 
-        Optional<Integer> min = Stream.of(nums).collect(Collectors.maxBy((n1, n2) -> n2 - n1));
+        Optional<Integer> max2 = Stream.of(nums).collect(Collectors.minBy((n1, n2) -> n2 - n1));
+
+        System.out.println("max = " + max2.get());
+
+        Optional<Integer> min = Stream.of(nums).collect(Collectors.minBy((n1, n2) -> n1 - n2));
 
         System.out.println("min = " + min.get());
+
+        Optional<Integer> min2 = Stream.of(nums).collect(Collectors.maxBy((n1, n2) -> n2 - n1));
+
+        System.out.println("min = " + min2.get());
     }
 }
