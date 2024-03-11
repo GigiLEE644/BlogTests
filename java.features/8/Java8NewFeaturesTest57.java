@@ -11,14 +11,22 @@ public class Java8NewFeaturesTest57 {
 
         System.out.println();
 
+        System.out.println(IntStream.range(1, 5).sum());
+
+        System.out.println();
+
+        System.out.println(IntStream.range(1, 5).average().getAsDouble());
+
+        System.out.println();
+
         Stream.of("1", "2", "3", "4").mapToInt(Integer::parseInt).forEach(System.out::println);
 
         System.out.println();
 
-        IntStream.range(1, 5).mapToObj(i -> "" + i).forEach(System.out::println);
+        IntStream.range(1, 5).boxed().forEach(System.out::println);
 
         System.out.println();
 
-        IntStream.range(1, 5).boxed().forEach(System.out::println);
+        IntStream.range(1, 5).mapToObj(i -> "" + i).forEach(System.out::println);
     }
 }
