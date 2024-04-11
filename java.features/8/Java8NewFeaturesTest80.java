@@ -1,8 +1,22 @@
-public class Java8NewFeaturesTest79 {
+public class Java8NewFeaturesTest80 {
     public static void main(String[] args) {
         Car car = new Car(new FuelSystem(new FuelTank(20)));
 
-        System.out.println(car.getFuel().getTank().getCapacity());
+        int capacity = 0;
+
+        if (car != null) {
+            FuelSystem fuel = car.getFuel();
+
+            if (fuel != null) {
+                FuelTank tank = fuel.getTank();
+
+                if (tank != null) {
+                    capacity = tank.getCapacity();
+                }
+            }
+        }
+
+        System.out.println(capacity);
     }
 
     private static class Car {
