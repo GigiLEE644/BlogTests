@@ -10,27 +10,50 @@ public class Java8NewFeaturesTest90 {
     }
 
     private static void optionalWay() {
-        Optional<Computer> computer = Optional.ofNullable(new Computer(new Memory(64)));
+        Optional<Computer> computer = Optional.ofNullable(new Computer(new MotherBoard(new Memory(64))));
 
-        computer.map(Computer::getMemory).ifPresent(memory -> System.out.println(memory.getCapacity()));
+        Integer capacity = computer.map(Computer::getMotherBoard).map(MotherBoard::getMemory).map(Memory::getCapacity)
+                .orElse(0);
+
+        System.out.println(capacity);
     }
 
     private static void traditionalWay() {
-        Computer computer = new Computer(new Memory(64));
+        int capacity = 0;
+
+        Computer computer = new Computer(new MotherBoard(new Memory(64)));
 
         if (computer != null) {
-            Memory memory = computer.getMemory();
+            MotherBoard motherBoard = computer.getMotherBoard();
 
-            if (memory != null) {
-                System.out.println(memory.getCapacity());
+            if (motherBoard != null) {
+                Memory memory = motherBoard.getMemory();
+
+                if (memory != null) {
+                    capacity = memory.getCapacity();
+                }
             }
         }
+
+        System.out.println(capacity);
     }
 
     private static class Computer {
+        private MotherBoard motherBoard;
+
+        public Computer(MotherBoard motherBoard) {
+            this.motherBoard = motherBoard;
+        }
+
+        public MotherBoard getMotherBoard() {
+            return motherBoard;
+        }
+    }
+
+    private static class MotherBoard {
         private Memory memory;
 
-        public Computer(Java8NewFeaturesTest90.Memory memory) {
+        public MotherBoard(Memory memory) {
             this.memory = memory;
         }
 
