@@ -4,8 +4,6 @@ public class Java8NewFeaturesTest91 {
     public static void main(String[] args) {
         Optional<Computer> computer = Optional.ofNullable(new Computer(new MotherBoard(new Memory(64))));
 
-        // Integer capacity = computer.map(Computer::getMotherBoard).map(MotherBoard::getMemory).map(Memory::getCapacity).orElse(0);
-
         Integer capacity = computer.flatMap(Computer::getMotherBoard).flatMap(MotherBoard::getMemory)
                 .map(Memory::getCapacity).orElse(0);
 
