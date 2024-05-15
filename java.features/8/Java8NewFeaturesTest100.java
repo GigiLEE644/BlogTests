@@ -5,6 +5,16 @@ import java.time.format.DateTimeFormatter;
 
 public class Java8NewFeaturesTest100 {
     public static void main(String[] args) {
+        // predefined
+        String now = DateTimeFormatter.ISO_DATE.format(LocalDate.now());
+
+        System.out.println(now);
+
+        String now2 = DateTimeFormatter.ISO_DATE_TIME.format(LocalDateTime.now());
+
+        System.out.println(now2);
+
+        // user defined
         LocalDate d = LocalDate.of(2015, 10, 03);
 
         String formatedD = d.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
