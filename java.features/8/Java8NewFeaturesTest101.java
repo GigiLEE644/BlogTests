@@ -13,28 +13,24 @@ public class Java8NewFeaturesTest101 {
         public Class<?> value();
     }
 
-    public static interface IObjectA {
-    }
-
-    public static class ObjectA_DTO implements IObjectA {
-    }
-
-    public static class ObjectA_Entity implements IObjectA {
-    }
-
-    public static class SomeServiceImpl {
-        public @ExpectedType(ObjectA_DTO.class) IObjectA doSomething(@ExpectedType(ObjectA_Entity.class) IObjectA obj) {
-            return (ObjectA_Entity) obj;
+    public static class CustomStringUtils {
+        public @ExpectedType(String.class) String convertCase(@ExpectedType(String.class) String s,
+                @ExpectedType(boolean.class) boolean toUpperCase) {
+            return toUpperCase ? s.toUpperCase() : s.toLowerCase();
         }
     }
 
     public static void main(String[] args) throws NoSuchMethodException, SecurityException {
-        Method m = SomeServiceImpl.class.getMethod("doSomething", IObjectA.class);
+        Method m = CustomStringUtils.class.getMethod("convertCase", String.class, boolean.class);
+
         AnnotatedType returnType = m.getAnnotatedReturnType();
         Annotation returnTypeAnnotation = returnType.getAnnotation(ExpectedType.class);
+        System.out.println("returnTypeAnnotation :");
         System.out.println(returnTypeAnnotation);
+        System.out.println();
 
         AnnotatedType[] parameters = m.getAnnotatedParameterTypes();
+        System.out.println("parametersAnnotation :");
         for (AnnotatedType p : parameters) {
             Annotation parameterAnnotation = p.getAnnotation(ExpectedType.class);
             System.out.println(parameterAnnotation);
