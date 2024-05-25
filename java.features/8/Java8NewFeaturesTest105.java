@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -8,13 +8,38 @@ public class Java8NewFeaturesTest105 {
         Product p1 = new Product(1, "candy");
         Product p2 = new Product(2, "milk");
 
-        List<Product> products = Arrays.asList(p1, p2);
+        List<Product> products = new ArrayList<>();
+        products.add(p1);
+        products.add(p2);
 
         ShoppingCart<Product> cart = new ShoppingCart<>(products);
+
+        Iterator<Product> it = cart.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+
+        System.out.println();
 
         for (Product p : cart) {
             System.out.println(p);
         }
+
+        System.out.println();
+
+        cart.forEach(System.out::println);
+
+        System.out.println();
+
+        it = cart.iterator();
+
+        while (it.hasNext()) {
+            System.out.println(it.next());
+            it.remove();
+        }
+
+        System.out.println();
+        System.out.println(products.size());
     }
 
     private static class Product {
@@ -34,16 +59,16 @@ public class Java8NewFeaturesTest105 {
 
     private static class ShoppingCart<E> implements Iterable<E> {
         private List<E> elements;
-        private int index;
 
         public ShoppingCart(List<E> elements) {
             this.elements = elements;
-            this.index = 0;
         }
 
         @Override
         public Iterator<E> iterator() {
             return new Iterator<E>() {
+                private int index = 0;
+
                 @Override
                 public boolean hasNext() {
                     return index < elements.size();
@@ -53,6 +78,11 @@ public class Java8NewFeaturesTest105 {
                 public E next() {
                     E next = elements.get(index++);
                     return next;
+                }
+
+                @Override
+                public void remove() {
+                    elements.remove(--index);
                 }
             };
         }
