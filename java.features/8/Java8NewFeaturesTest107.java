@@ -7,11 +7,11 @@ public class Java8NewFeaturesTest107 {
         String prefix = "[";
         String suffix = "]";
 
-        StringJoiner sj1 = new StringJoiner(delimiter);
+        StringJoiner sj1 = new StringJoiner(delimiter, prefix, suffix);
 
         System.out.println(sj1.toString());
 
-        StringJoiner sj2 = new StringJoiner(delimiter, prefix, suffix);
+        StringJoiner sj2 = new StringJoiner(delimiter);
 
         System.out.println(sj2.toString());
 
