@@ -12,13 +12,9 @@ public class Java11NewFeaturesTest6 {
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1)
                     .connectTimeout(Duration.ofSeconds(10)).build();
 
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("https://www.google.fr/")).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080")).build();
 
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-            response.headers().map().forEach((k, v) -> System.out.println(k + ":" + v));
-
-            System.out.println();
 
             System.out.println(response.statusCode());
 

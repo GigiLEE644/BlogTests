@@ -17,16 +17,12 @@ public class Java11NewFeaturesTest8 {
                     .version(HttpClient.Version.HTTP_1_1)
                     .connectTimeout(Duration.ofSeconds(10)).build();
 
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("https://www.google.fr/")).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080")).build();
 
             CompletableFuture<HttpResponse<String>> responseFuture = httpClient.sendAsync(request,
                     HttpResponse.BodyHandlers.ofString());
 
             responseFuture.thenAccept(response -> {
-                response.headers().map().forEach((k, v) -> System.out.println(k + ":" + v));
-
-                System.out.println();
-
                 System.out.println(response.statusCode());
 
                 System.out.println();
