@@ -1,47 +1,49 @@
-
-// import java.io.BufferedReader;
 import java.io.IOException;
-// import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.Date;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Java11NewFeaturesTest9 {
 
-    public static void main(String[] args) {
-        ServerSocket server = null;
-        try {
-            server = new ServerSocket(8080);
-            System.out.println("Listening for connection on port 8080 ....");
-            /*
-             * while (true) {
-             * Socket clientSocket = server.accept();
-             * InputStreamReader isr = new InputStreamReader(clientSocket.getInputStream());
-             * BufferedReader reader = new BufferedReader(isr);
-             * String line = reader.readLine();
-             * while (!line.isEmpty()) {
-             * System.out.println(line);
-             * line = reader.readLine();
-             * }
-             * }
-             */
-            while (true) {
-                try (Socket socket = server.accept()) {
-                    Date today = new Date();
-                    String httpResponse = "HTTP/1.1 200 OK\r\n\r\n" + today;
-                    socket.getOutputStream().write(httpResponse.getBytes("UTF-8"));
-                }
+    public static void main(String[] args) throws IOException, InterruptedException {
+        Map<Object, Object> data = new HashMap<>();
+        data.put("name", "tom");
+        data.put("age", "18");
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .POST(ofFormData(data))
+                .uri(URI.create("http://localhost:8080"))
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .build();
+
+        HttpClient httpClient = HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_1_1)
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println(response.statusCode());
+
+        System.out.println(response.body());
+    }
+
+    public static HttpRequest.BodyPublisher ofFormData(Map<Object, Object> data) {
+        var builder = new StringBuilder();
+        for (Map.Entry<Object, Object> entry : data.entrySet()) {
+            if (builder.length() > 0) {
+                builder.append("&");
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (server != null) {
-                try {
-                    server.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            builder.append(URLEncoder.encode(entry.getKey().toString(), StandardCharsets.UTF_8));
+            builder.append("=");
+            builder.append(URLEncoder.encode(entry.getValue().toString(), StandardCharsets.UTF_8));
         }
+        return HttpRequest.BodyPublishers.ofString(builder.toString());
     }
 }
