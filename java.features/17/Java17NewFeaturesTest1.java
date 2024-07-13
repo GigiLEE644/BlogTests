@@ -21,5 +21,13 @@ public class Java17NewFeaturesTest1 {
                 """.formatted("tom");
 
         System.out.println(formated);
+
+        String sql = """
+                select * from user
+                where name = 'tom'\sand\sage = 18\
+                ;
+                """;
+        
+        System.out.println(sql);
     }
 }
