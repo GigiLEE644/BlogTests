@@ -9,8 +9,9 @@ public class Java21NewFeaturesTest1 {
 
         private static void display(Object obj) {
                 if (obj instanceof Person p) {
-                        System.out.println("first name = " + p.name().first());
-                        System.out.println("last name = " + p.name().last());
+                        Name n = p.name();
+                        System.out.println("first name = " + n.first());
+                        System.out.println("last name = " + n.last());
                         System.out.println("age = " + p.age());
                 }
 
