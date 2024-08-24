@@ -1,14 +1,23 @@
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
 
 public class Java21NewFeaturesTest15 {
 
-        public static void main(String[] args) {
-                ProcessBuilder pb = new ProcessBuilder();
+        public static void main(String[] args) throws IOException, InterruptedException {
+                ProcessBuilder builder = new ProcessBuilder();
 
-                Map<String, String> envMap = pb.environment();
+                builder.command("pwd");
 
-                for (Map.Entry<String, String> entry : envMap.entrySet()) {
-                        System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-                }
+                builder.inheritIO();
+
+                Process process = builder.start();
+
+                process.waitFor();
+
+                builder.directory(new File("/tmp"));
+
+                process = builder.start();
+
+                process.waitFor();
         }
 }

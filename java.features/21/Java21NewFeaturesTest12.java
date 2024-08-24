@@ -6,20 +6,33 @@ import java.util.List;
 
 public class Java21NewFeaturesTest12 {
 
-        public static void main(String[] args) throws IOException {
-                List<String> commands = new ArrayList<String>();
-                commands.add("ls");
-                commands.add("-l");
-                commands.add("/tmp");
+        public static void main(String[] args) throws IOException, InterruptedException {
+                List<String> command = new ArrayList<String>() {
+                        {
+                                add("ls");
+                                add("-l");
+                                add("/tmp");
+                        }
+                };
 
-                ProcessBuilder pb = new ProcessBuilder(commands);
+                ProcessBuilder builder = new ProcessBuilder(command);
 
-                Process process = pb.start();
+                System.out.println("command to be executed : " + builder.command());
 
-                BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String s = null;
-                while ((s = stdInput.readLine()) != null) {
-                        System.out.println(s);
+                Process process = builder.start();
+
+                process.waitFor();
+
+                showExecutedResult(process);
+        }
+
+        private static void showExecutedResult(Process process) throws IOException {
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                        String line = null;
+
+                        while ((line = br.readLine()) != null) {
+                                System.out.println(line);
+                        }
                 }
         }
 }
