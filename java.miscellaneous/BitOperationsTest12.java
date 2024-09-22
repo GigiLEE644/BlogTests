@@ -8,6 +8,6 @@ public class BitOperationsTest12 {
             odd ^= arr[i];
         }
 
-        System.out.println("The only odd number in the array is " + odd);
+        System.out.println("The only number occurring odd number of times in the array is " + odd);
     }
 }
