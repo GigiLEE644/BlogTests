@@ -9,14 +9,21 @@ public class MapFileSectionIntoMemoryReadWriteMode {
         String path = "/home/yan/github/BlogTests/greeting";
         try (RandomAccessFile raf = new RandomAccessFile(path, "rw"); FileChannel channel = raf.getChannel()) {
             MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE, 0, 5);
-            if (buffer.hasRemaining()) {
-                byte[] bytes = new byte[buffer.remaining()];
-                buffer.get(bytes);
-                System.out.println(new String(bytes));
-            }
+            display(buffer);
 
             buffer.clear();
             buffer.put("nihao".getBytes());
+
+            buffer.flip();
+            display(buffer);
+        }
+    }
+
+    private static void display(MappedByteBuffer buffer) {
+        if (buffer.hasRemaining()) {
+            byte[] bytes = new byte[buffer.remaining()];
+            buffer.get(bytes);
+            System.out.println(new String(bytes));
         }
     }
 }
