@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
-public class ChannelAndBuffer {
+public class ChannelAndBuffer2 {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // echo -e "123456789\c" > numbers
         String path = "/home/yan/github/BlogTests/numbers";
@@ -28,8 +28,8 @@ public class ChannelAndBuffer {
 
             show(buffer);
 
-            // if no clear between two times of read, it will not work
-            clear(buffer);
+            // doing a flip between two times of read will be the same as doing a clear
+            flip(buffer);
 
             info(buffer);
 
@@ -43,10 +43,10 @@ public class ChannelAndBuffer {
         }
     }
 
-    private static void clear(ByteBuffer buffer) {
+    private static void flip(ByteBuffer buffer) {
         System.out.println();
-        System.out.println("clear buffer");
-        buffer.clear();
+        System.out.println("flip buffer");
+        buffer.flip();
     }
 
     private static void read(FileChannel channel, ByteBuffer buffer) throws IOException {
