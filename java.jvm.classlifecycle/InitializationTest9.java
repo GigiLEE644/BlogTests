@@ -9,7 +9,9 @@ import java.io.Serializable;
 
 public class InitializationTest9 {
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
-        //serialize();
+        // first time run this to create the serialized file
+        // then comment it out to test the deserialization
+        // serialize();
         try (FileInputStream fi = new FileInputStream(new File("a"));
                 ObjectInputStream oi = new ObjectInputStream(fi)) {
             A a = (A) oi.readObject();
