@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class OperandStackTest {
     public static void main(String[] args) {
         class Addition {
