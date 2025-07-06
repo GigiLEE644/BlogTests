@@ -1,4 +1,4 @@
-public class PolymorphiseExample2 {
+public class PolymorphismExample2 {
     private static class Calculator {
         public int add(int a, int b) {
             return a + b;
