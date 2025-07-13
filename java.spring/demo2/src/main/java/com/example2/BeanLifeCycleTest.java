@@ -3,6 +3,8 @@ package com.example2;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
+import org.springframework.beans.PropertyValues;
 import org.springframework.context.*;
 import org.springframework.context.support.GenericApplicationContext;
 
@@ -16,11 +18,11 @@ public class BeanLifeCycleTest {
         private String name;
 
         public User() {
-            System.out.println("\n1. User constructor called");
+            System.out.println("\n4. User constructor called");
         }
 
         public void setName(String name) {
-            System.out.println("\n2. setName called with: " + name);
+            System.out.println("\n7. setName called with: " + name);
             this.name = name;
         }
 
@@ -32,47 +34,47 @@ public class BeanLifeCycleTest {
         // Awareness callbacks
         @Override
         public void setBeanName(String name) {
-            System.out.println("\n3. BeanNameAware#setBeanName called: " + name);
+            System.out.println("\n8. BeanNameAware#setBeanName called: " + name);
         }
 
         @Override
         public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-            System.out.println("\n4. BeanFactoryAware#setBeanFactory called with: " + beanFactory);
+            System.out.println("\n9. BeanFactoryAware#setBeanFactory called with: " + beanFactory);
         }
 
         @Override
         public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-            System.out.println("\n5. ApplicationContextAware#setApplicationContext called with: " + applicationContext);
+            System.out.println("\n10. ApplicationContextAware#setApplicationContext called with: " + applicationContext);
         }
 
         // Initialization callbacks
         @PostConstruct
         public void postConstruct() {
-            System.out.println("\n6. @PostConstruct called");
+            System.out.println("\n13. @PostConstruct called");
         }
 
         @Override
         public void afterPropertiesSet() {
-            System.out.println("\n7. InitializingBean#afterPropertiesSet called");
+            System.out.println("\n14. InitializingBean#afterPropertiesSet called");
         }
 
         public void customInit() {
-            System.out.println("\n8. custom init-method called");
+            System.out.println("\n15. custom init-method called");
         }
 
         // Destruction callbacks
         @PreDestroy
         public void preDestroy() {
-            System.out.println("\n9. @PreDestroy called");
+            System.out.println("\n18. @PreDestroy called");
         }
 
         @Override
         public void destroy() {
-            System.out.println("\n10. DisposableBean#destroy called");
+            System.out.println("\n19. DisposableBean#destroy called");
         }
 
         public void customDestroy() {
-            System.out.println("\n11. custom destroy-method called");
+            System.out.println("\n20. custom destroy-method called");
         }
     }
 
@@ -81,7 +83,7 @@ public class BeanLifeCycleTest {
         @Override
         public Object postProcessBeforeInitialization(Object bean, String beanName) {
             if (bean instanceof User) {
-                System.out.println("\nBeanPostProcessor#postProcessBeforeInitialization called for: " + beanName);
+                System.out.println("\n11. BeanPostProcessor#postProcessBeforeInitialization called for: " + beanName);
             }
             return bean;
         }
@@ -89,16 +91,51 @@ public class BeanLifeCycleTest {
         @Override
         public Object postProcessAfterInitialization(Object bean, String beanName) {
             if (bean instanceof User) {
-                System.out.println("\nBeanPostProcessor#postProcessAfterInitialization called for: " + beanName);
+                System.out.println("\n16. BeanPostProcessor#postProcessAfterInitialization called for: " + beanName);
             }
             return bean;
         }
     }
 
+    // InstantiationAwareBeanPostProcessor to show instantiation and property population hooks
+    public static class MyInstantiationAwareBeanPostProcessor implements InstantiationAwareBeanPostProcessor {
+        @Override
+        public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
+            if (beanClass == User.class) {
+                System.out.println("\n2. InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation called for: " + beanName);
+            }
+            return null; // return null to proceed with default instantiation
+        }
+
+        @Override
+        public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
+            if (bean instanceof User) {
+                System.out.println("\n5. InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation called for: " + beanName);
+            }
+            return true; // continue with property population
+        }
+
+        @Override
+        public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws BeansException {
+            if (bean instanceof User) {
+                System.out.println("\n6. InstantiationAwareBeanPostProcessor#postProcessProperties called for: " + beanName);
+            }
+            return pvs;
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.println("\n=== BeanLifeCycleTest main method started ===");
+        System.out.println("\n1. === BeanLifeCycleTest main method started ===");
 
         GenericApplicationContext context = new GenericApplicationContext();
+
+        // Register InstantiationAwareBeanPostProcessor
+        context.addBeanFactoryPostProcessor(beanFactory ->
+            beanFactory.addBeanPostProcessor(new MyInstantiationAwareBeanPostProcessor())
+        );
+
+        // Step 3: Bean definition registered (added for clarity)
+        System.out.println("\n3. User bean definition registered");
 
         // Register BeanPostProcessor
         context.registerBean(MyBeanPostProcessor.class);
@@ -114,6 +151,7 @@ public class BeanLifeCycleTest {
             }
         );
 
+        // Register CommonAnnotationBeanPostProcessor for @PostConstruct and @PreDestroy
         context.addBeanFactoryPostProcessor(beanFactory -> 
             beanFactory.addBeanPostProcessor(new org.springframework.context.annotation.CommonAnnotationBeanPostProcessor())
         );
@@ -122,9 +160,9 @@ public class BeanLifeCycleTest {
 
         User user = context.getBean(User.class);
         user.setName("John Doe");
-        System.out.println("\nUser name: " + user.getName());
+        System.out.println("\n12. User name: " + user.getName());
 
         context.close();
-        System.out.println("\n=== ApplicationContext closed ===");
+        System.out.println("\n17. === ApplicationContext closed ===");
     }
 }
