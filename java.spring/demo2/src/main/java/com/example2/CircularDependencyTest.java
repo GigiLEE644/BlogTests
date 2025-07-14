@@ -1,6 +1,6 @@
 package com.example2;
 
-public class SimpleTest {
+public class CircularDependencyTest {
     private static class A {
         public A() {
             new B();
