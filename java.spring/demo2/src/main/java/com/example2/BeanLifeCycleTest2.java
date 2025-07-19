@@ -1,8 +1,10 @@
 package com.example2;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
 import org.springframework.context.*;
 import org.springframework.context.support.GenericApplicationContext;
 
@@ -147,10 +149,51 @@ public class BeanLifeCycleTest2 {
         }
     }
 
+    // InstantiationAwareBeanPostProcessor to show instantiation and property population hooks
+    public static class MyInstantiationAwareBeanPostProcessor implements InstantiationAwareBeanPostProcessor {
+        @Override
+        public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
+            if (beanClass == User.class) {
+                System.out.println("\nI1. InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation called for: " + beanName);
+            }
+            if (beanClass == Address.class) {
+                System.out.println("\nI1. InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation called for Address: " + beanName);
+            }
+            return null; // proceed with default instantiation
+        }
+
+        @Override
+        public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
+            if (bean instanceof User) {
+                System.out.println("\nI2. InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation called for: " + beanName);
+            }
+            if (bean instanceof Address) {
+                System.out.println("\nI2. InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation called for Address: " + beanName);
+            }
+            return true; // continue with property population
+        }
+
+        @Override
+        public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws BeansException {
+            if (bean instanceof User) {
+                System.out.println("\nI3. InstantiationAwareBeanPostProcessor#postProcessProperties called for: " + beanName);
+            }
+            if (bean instanceof Address) {
+                System.out.println("\nI3. InstantiationAwareBeanPostProcessor#postProcessProperties called for Address: " + beanName);
+            }
+            return pvs;
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("\n=== BeanLifeCycleTest2 main method started ===");
 
         GenericApplicationContext context = new GenericApplicationContext();
+
+        // Register InstantiationAwareBeanPostProcessor
+        context.addBeanFactoryPostProcessor(beanFactory ->
+            beanFactory.addBeanPostProcessor(new MyInstantiationAwareBeanPostProcessor())
+        );
 
         // Register BeanPostProcessor
         context.registerBean(MyBeanPostProcessor.class);
