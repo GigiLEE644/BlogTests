@@ -13,6 +13,10 @@ public class DoubleCheckSinglton {
     }
 
     public static void main(String[] args) {
-        DoubleCheckSinglton.getInstance();
+        DoubleCheckSinglton i1 = DoubleCheckSinglton.getInstance();
+        DoubleCheckSinglton i2 = DoubleCheckSinglton.getInstance();
+
+        System.out.println("i1 == i2 : " + (i1 == i2));
+
     }
 }
