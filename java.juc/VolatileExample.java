@@ -12,10 +12,15 @@ public class VolatileExample {
         };
 
         Thread t = new Thread(r);
+
         t.start();
 
-        TimeUnit.SECONDS.sleep(1);
+        int n = 1;
+
+        TimeUnit.MILLISECONDS.sleep(n);
 
         stop = true;
+
+        System.out.println("Thread has been signaled to stop after waiting for " + n + " milliseconds.");
     }
 }
