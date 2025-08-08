@@ -8,9 +8,11 @@ public class SynchronizedOnBlockOfCode {
 
         Counter counter = new Counter();
 
+        MyLock lock = new MyLock();
+
         for (int i = 0; i < 1000; i++) {
             service.submit(() -> {
-                synchronized (counter) {
+                synchronized (lock) {
                     counter.inc();
                 }
             });
@@ -29,5 +31,8 @@ public class SynchronizedOnBlockOfCode {
         void inc() {
             this.sum++;
         }
+    }
+
+    private static class MyLock {
     }
 }
