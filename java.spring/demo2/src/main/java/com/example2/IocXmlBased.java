@@ -2,7 +2,7 @@ package com.example2;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class XmlBasedConfigurationExample {
+public class IocXmlBased {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
 
@@ -16,7 +16,7 @@ public class XmlBasedConfigurationExample {
     private static class GreetingService {
         private String message;
 
-        public void setMessage(String message) {
+        public GreetingService(String message) {
             this.message = message;
         }
 

@@ -5,8 +5,8 @@
            http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="gs" class="com.example2.XmlBasedConfigurationExample.GreetingService">
-        <property name="message" value="Hello World!" />
+    <bean id="gs" class="com.example2.IocXmlBased.GreetingService">
+        <constructor-arg value="Hello World!" />
     </bean>
 
 </beans>
