@@ -34,3 +34,8 @@ public class DIFieldInjection {
         }
     }
 }
+/*
+ * Output:
+ * Placing order...
+ * Processing payment...
+ */
