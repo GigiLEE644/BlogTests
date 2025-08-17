@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Prototype bean -->
+    <bean id="paymentService" class="com.example2.DILookupXML.PaymentService" scope="prototype"/>
+
+    <!-- Singleton bean with lookup-method injection -->
+    <bean id="orderService" class="com.example2.DILookupXML.OrderService">
+        <lookup-method name="getPaymentService" bean="paymentService"/>
+    </bean>
+
+</beans>
