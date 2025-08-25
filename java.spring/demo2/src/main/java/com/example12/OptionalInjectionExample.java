@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @ComponentScan
 public class OptionalInjectionExample {
-    //@Component
+    // @Component
     private static class PaymentService {
         protected void processPayment() {
             System.out.println("Processing payment with instance: " + this);
@@ -20,7 +20,11 @@ public class OptionalInjectionExample {
         private PaymentService paymentService;
 
         public void placeOrder() {
-            paymentService.processPayment();
+            if (paymentService != null) {
+                paymentService.processPayment();
+            } else {
+                System.out.println("No payment service available, proceeding without payment.");
+            }
         }
     }
 
