@@ -8,5 +8,7 @@ public class CompletableFutureTest2 {
                 .thenApply(g -> "[ 2. " + Thread.currentThread().getName() + " : thenApply = " + g + " ]")
                 .thenAccept(g -> System.out
                         .println("[ 3. " + Thread.currentThread().getName() + " : thenAccept = " + g + " ]"));
+
+        Thread.sleep(2000);
     }
 }
