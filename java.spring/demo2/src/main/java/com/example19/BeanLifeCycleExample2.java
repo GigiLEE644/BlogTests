@@ -1,6 +1,10 @@
 package com.example19;
 
-public class BeanLifeCycleExample {
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+public class BeanLifeCycleExample2 {
     static class Address {
         private String city;
 
@@ -69,10 +73,27 @@ public class BeanLifeCycleExample {
         }
     }
 
+    @Configuration
+    static class Configs {
+        @Bean
+        public Address address() {
+            return new Address("New York");
+        }
+
+        @Bean
+        public User user(Address address) {
+            return new User("Alice", address);
+        }
+    }
+
     public static void main(String[] args) {
-        Address address = new Address("New York");
-        User user = new User("Alice", address);
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
+                Configs.class);
+
+        User user = ctx.getBean(User.class);
 
         System.out.println(user);
+
+        ctx.close();
     }
 }
