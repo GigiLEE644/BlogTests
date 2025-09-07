@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -17,12 +18,22 @@ public class ShutingDownES {
             es.shutdown();
 
             try {
-                if (!es.awaitTermination(800, TimeUnit.MILLISECONDS)) {
-                    es.shutdownNow();
+                if (!es.awaitTermination(10, TimeUnit.MILLISECONDS)) {
+                    List<Runnable> notFinishedTasks = es.shutdownNow();
+
+                    executeByMain(notFinishedTasks);
                 }
             } catch (InterruptedException e) {
-                es.shutdownNow();
+                List<Runnable> notFinishedTasks = es.shutdownNow();
+
+                executeByMain(notFinishedTasks);
             }
         }
+    }
+
+    private static void executeByMain(List<Runnable> notFinishedTasks) {
+        notFinishedTasks.forEach(task -> {
+            task.run();
+        });
     }
 }
