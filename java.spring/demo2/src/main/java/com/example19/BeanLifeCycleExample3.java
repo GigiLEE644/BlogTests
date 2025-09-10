@@ -2,10 +2,10 @@ package com.example19;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.PropertyValues;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 public class BeanLifeCycleExample3 {
     static class Address {
@@ -13,11 +13,6 @@ public class BeanLifeCycleExample3 {
 
         public Address() {
             System.out.println("\nAddress constructor called");
-        }
-
-        public Address(String city) {
-            this.city = city;
-            System.out.println("\nAddress constructor with city called: " + city);
         }
 
         public String getCity() {
@@ -42,12 +37,6 @@ public class BeanLifeCycleExample3 {
 
         public User() {
             System.out.println("\nUser constructor called");
-        }
-
-        public User(String name, Address address) {
-            this.name = name;
-            this.address = address;
-            System.out.println("\nUser constructor with name and address called: " + name + ", " + address);
         }
 
         public void setName(String name) {
@@ -76,21 +65,23 @@ public class BeanLifeCycleExample3 {
         }
     }
 
-    @Configuration
-    static class Configs {
-        @Bean
-        public Address address() {
-            return new Address("New York");
-        }
-
-        @Bean
-        public User user(Address address) {
-            return new User("Alice", address);
-        }
-    }
-
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+
+        // Register Address bean definition with property injection
+        BeanDefinition addressDef = BeanDefinitionBuilder
+                .genericBeanDefinition(Address.class)
+                .addPropertyValue("city", "New York")
+                .getBeanDefinition();
+        ctx.registerBeanDefinition("address", addressDef);
+
+        // Register User bean definition with property injection
+        BeanDefinition userDef = BeanDefinitionBuilder
+                .genericBeanDefinition(User.class)
+                .addPropertyValue("name", "Alice")
+                .addPropertyReference("address", "address")
+                .getBeanDefinition();
+        ctx.registerBeanDefinition("user", userDef);
 
         ctx.addBeanFactoryPostProcessor(
                 beanFactory -> beanFactory.addBeanPostProcessor(new InstantiationAwareBeanPostProcessor() {
@@ -102,7 +93,6 @@ public class BeanLifeCycleExample3 {
                                     "\nInstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation called for: "
                                             + beanName);
                         }
-
                         return null;
                     }
 
@@ -113,7 +103,6 @@ public class BeanLifeCycleExample3 {
                                     "\nInstantiationAwareBeanPostProcessor#postProcessAfterInstantiation called for: "
                                             + beanName);
                         }
-
                         return true;
                     }
 
@@ -127,12 +116,9 @@ public class BeanLifeCycleExample3 {
 
                             System.out.println("Current PropertyValues: " + pvs);
                         }
-
                         return pvs;
                     }
                 }));
-
-        ctx.register(Configs.class);
 
         ctx.refresh();
 
