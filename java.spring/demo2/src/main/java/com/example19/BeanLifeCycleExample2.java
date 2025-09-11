@@ -1,8 +1,8 @@
 package com.example19;
 
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 public class BeanLifeCycleExample2 {
     static class Address {
@@ -73,22 +73,23 @@ public class BeanLifeCycleExample2 {
         }
     }
 
-    @Configuration
-    static class Configs {
-        @Bean
-        public Address address() {
-            return new Address("New York");
-        }
-
-        @Bean
-        public User user(Address address) {
-            return new User("Alice", address);
-        }
-    }
-
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
-                Configs.class);
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+
+        BeanDefinition addressDef = BeanDefinitionBuilder
+                .genericBeanDefinition(Address.class)
+                .addConstructorArgValue("New York")
+                .getBeanDefinition();
+        ctx.registerBeanDefinition("address", addressDef);
+
+        BeanDefinition userDef = BeanDefinitionBuilder
+                .genericBeanDefinition(User.class)
+                .addConstructorArgValue("Alice")
+                .addConstructorArgReference("address")
+                .getBeanDefinition();
+        ctx.registerBeanDefinition("user", userDef);
+
+        ctx.refresh();
 
         User user = ctx.getBean(User.class);
 
