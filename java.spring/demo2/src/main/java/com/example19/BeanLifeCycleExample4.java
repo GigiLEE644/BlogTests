@@ -2,13 +2,18 @@ package com.example19;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.PropertyValues;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class BeanLifeCycleExample3 {
-    static class Address {
+public class BeanLifeCycleExample4 {
+    static class Address implements BeanNameAware, BeanFactoryAware, ApplicationContextAware {
         private String city;
 
         public Address() {
@@ -26,12 +31,28 @@ public class BeanLifeCycleExample3 {
         }
 
         @Override
+        public void setBeanName(String name) {
+            System.out.println("\nBeanNameAware#setBeanName called: " + name);
+        }
+
+        @Override
+        public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+            System.out.println("\nBeanFactoryAware#setBeanFactory called: " + beanFactory.getClass());
+        }
+
+        @Override
+        public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+            System.out.println(
+                    "\nApplicationContextAware#setApplicationContext called: " + applicationContext.getClass());
+        }
+
+        @Override
         public String toString() {
             return "Address{city='" + city + "'}";
         }
     }
 
-    static class User {
+    static class User implements BeanNameAware, BeanFactoryAware, ApplicationContextAware {
         private String name;
         private Address address;
 
@@ -57,6 +78,22 @@ public class BeanLifeCycleExample3 {
         public void setAddress(Address address) {
             System.out.println("\nsetAddress called with: " + address);
             this.address = address;
+        }
+
+        @Override
+        public void setBeanName(String name) {
+            System.out.println("\nBeanNameAware#setBeanName called: " + name);
+        }
+
+        @Override
+        public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+            System.out.println("\nBeanFactoryAware#setBeanFactory called: " + beanFactory.getClass());
+        }
+
+        @Override
+        public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+            System.out.println(
+                    "\nApplicationContextAware#setApplicationContext called: " + applicationContext.getClass());
         }
 
         @Override
