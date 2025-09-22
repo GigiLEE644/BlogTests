@@ -1,9 +1,9 @@
-import module java.base; 
+// import module java.base; 
 
 public class Java25NewFeaturesTest2 {
     public static void main(String[] args) {
-        Date d = new Date();
-        System.out.println("Resolved Date: " + d);
+        //Date d = new Date();
+        //System.out.println("Resolved Date: " + d);
     }
 }
 /*
