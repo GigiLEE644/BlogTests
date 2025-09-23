@@ -3,6 +3,6 @@ public class Java25NewFeaturesTest5 {
     static final StableValue<String> MESSAGE = StableValue.of("Hello, StableValue!");
 
     void main() {
-        System.out.println(MESSAGE.get()); // Output: Hello, StableValue!
+        System.out.println(MESSAGE); // Output: Hello, StableValue!
     }
 }
