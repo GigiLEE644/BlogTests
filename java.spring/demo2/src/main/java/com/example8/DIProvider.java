@@ -44,3 +44,9 @@ public class DIProvider {
         }
     }
 }
+/*
+ * Output:
+ * Processing payment with instance: com.example8.DIProvider$PaymentService@5158b42f
+ * Processing payment with instance: com.example8.DIProvider$PaymentService@595b007d
+ * Processing payment with instance: com.example8.DIProvider$PaymentService@72d1ad2e
+ */

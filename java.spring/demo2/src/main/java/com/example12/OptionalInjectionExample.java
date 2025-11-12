@@ -36,3 +36,7 @@ public class OptionalInjectionExample {
         context.close();
     }
 }
+/*
+ * Output:
+ * No payment service available, proceeding without payment.
+ */

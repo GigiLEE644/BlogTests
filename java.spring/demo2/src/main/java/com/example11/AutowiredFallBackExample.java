@@ -40,3 +40,7 @@ public class AutowiredFallBackExample {
         context.close();
     }
 }
+/*
+ * Output:
+ * Processing payment with instance: com.example11.AutowiredFallBackExample$PaymentService@3ce1e309
+ */

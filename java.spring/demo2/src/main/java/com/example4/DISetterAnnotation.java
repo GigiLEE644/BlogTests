@@ -37,3 +37,8 @@ public class DISetterAnnotation {
         }
     }
 }
+/*
+ * Output:
+ * Placing order...
+ * Processing payment...
+ */

@@ -41,3 +41,7 @@ private static class PaymentService {
         context.close();
     }
 }
+/*
+ * Output:
+ * Processing payment with instance: com.example10.AutowiredWithQualifierExample$CreditCardPaymentService@158da8e
+ */

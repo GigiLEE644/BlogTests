@@ -45,3 +45,9 @@ public class DIObjectFactory {
         }
     }
 }
+/*
+ * Output:
+ * Processing payment with instance: com.example7.DIObjectFactory$PaymentService@72d1ad2e
+ * Processing payment with instance: com.example7.DIObjectFactory$PaymentService@399f45b1
+ * Processing payment with instance: com.example7.DIObjectFactory$PaymentService@478190fc
+ */

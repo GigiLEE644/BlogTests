@@ -42,3 +42,7 @@ public class AlternativeOptionalExample {
         context.close();
     }
 }
+/*
+ * Output:
+ * No payment service available, proceeding without payment.
+ */

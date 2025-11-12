@@ -38,3 +38,7 @@ public class NullableInjectionExample {
         context.close();
     }
 }
+/*
+ * Output:
+ * No payment service available, proceeding without payment.
+ */

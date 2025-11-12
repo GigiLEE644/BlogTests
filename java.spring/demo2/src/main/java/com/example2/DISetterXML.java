@@ -30,3 +30,8 @@ public class DISetterXML {
         }
     }
 }
+/*
+ * Output:
+ * Placing order...
+ * Processing payment...
+ */

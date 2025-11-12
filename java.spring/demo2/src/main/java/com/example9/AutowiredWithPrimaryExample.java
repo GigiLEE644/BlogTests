@@ -41,3 +41,7 @@ public class AutowiredWithPrimaryExample {
         context.close();
     }
 }
+/*
+ * Output:
+ * Processing payment with instance: com.example9.AutowiredWithPrimaryExample$CreditCardPaymentService@47af7f3d
+ */
