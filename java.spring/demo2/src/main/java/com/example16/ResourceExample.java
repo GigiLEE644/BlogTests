@@ -40,3 +40,7 @@ public class ResourceExample {
         context.close();
     }
 }
+/*
+ * Output:
+ *  Processing payment with instance: com.example16.ResourceExample$PaypalPaymentService@327514f
+ */

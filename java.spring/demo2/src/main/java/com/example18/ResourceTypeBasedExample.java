@@ -36,3 +36,7 @@ public class ResourceTypeBasedExample {
         context.close();
     }
 }
+/*
+ * Output:
+ *  Processing payment with instance: com.example18.ResourceTypeBasedExample$CreditCardPaymentService@1f2586d6
+ */

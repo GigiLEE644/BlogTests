@@ -41,3 +41,7 @@ public class ResourceNameBasedExample {
         context.close();
     }
 }
+/*
+ * Output:
+ *  Processing payment with instance: com.example17.ResourceNameBasedExample$PaymentService@5b12b668
+ */
