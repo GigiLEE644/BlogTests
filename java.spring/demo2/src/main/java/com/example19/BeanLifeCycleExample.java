@@ -76,3 +76,11 @@ public class BeanLifeCycleExample {
         System.out.println(user);
     }
 }
+/*
+Output:
+    Address constructor with city called: New York
+    
+    User constructor with name and address called: Alice, Address{city='New York'}
+    
+    User [name=Alice, address=Address{city='New York'}]
+*/
