@@ -98,3 +98,9 @@ public class BeanLifeCycleExample2 {
         ctx.close();
     }
 }
+/*
+ * Output:
+ * Address constructor with city called: New York
+ * User constructor with name and address called: Alice, Address{city='New York'}
+ * User [name=Alice, address=Address{city='New York'}]
+ */

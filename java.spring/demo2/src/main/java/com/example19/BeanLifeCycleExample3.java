@@ -129,3 +129,21 @@ public class BeanLifeCycleExample3 {
         ctx.close();
     }
 }
+/*
+ * Output:
+ * 
+ * 1.InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation called for: address
+ * Address constructor called
+ * 2.InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation called for: address
+ * 3.InstantiationAwareBeanPostProcessor#postProcessProperties called for: address
+ * Current PropertyValues: PropertyValues: length=1; bean property 'city'
+ * setCity called with: New York
+ * 1.InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation called for: user
+ * User constructor called
+ * 2.InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation called for: user
+ * 3.InstantiationAwareBeanPostProcessor#postProcessProperties called for: user
+ * Current PropertyValues: PropertyValues: length=2; bean property 'name'; bean property 'address'
+ * setName called with: Alice
+ * setAddress called with: Address{city='New York'}
+ * User [name=Alice, address=Address{city='New York'}]
+ */
