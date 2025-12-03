@@ -209,3 +209,60 @@ public class BeanLifeCycleExample6 {
         ctx.close(); // This will trigger DisposableBean#destroy for beans
     }
 }
+/*
+Output :
+
+        1.InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation called for: address
+        
+        Address constructor called
+        
+        2.InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation called for: address
+        
+        3.InstantiationAwareBeanPostProcessor#postProcessProperties called for: address
+        Current PropertyValues: PropertyValues: length=1; bean property 'city'
+        
+        setCity called with: New York
+        
+        BeanNameAware#setBeanName called: address
+        
+        BeanFactoryAware#setBeanFactory called: class org.springframework.beans.factory.support.DefaultListableBeanFactory
+        
+        ApplicationContextAware#setApplicationContext called: class org.springframework.context.annotation.AnnotationConfigApplicationContext
+        
+        4.BeanPostProcessor#postProcessBeforeInitialization called for: address
+        
+        InitializingBean#afterPropertiesSet called for Address
+        
+        5.BeanPostProcessor#postProcessAfterInitialization called for: address
+        
+        1.InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation called for: user
+        
+        User constructor called
+        
+        2.InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation called for: user
+        
+        3.InstantiationAwareBeanPostProcessor#postProcessProperties called for: user
+        Current PropertyValues: PropertyValues: length=2; bean property 'name'; bean property 'address'
+        
+        setName called with: Alice
+        
+        setAddress called with: Address{city='New York'}
+        
+        BeanNameAware#setBeanName called: user
+        
+        BeanFactoryAware#setBeanFactory called: class org.springframework.beans.factory.support.DefaultListableBeanFactory
+        
+        ApplicationContextAware#setApplicationContext called: class org.springframework.context.annotation.AnnotationConfigApplicationContext
+        
+        4.BeanPostProcessor#postProcessBeforeInitialization called for: user
+        
+        InitializingBean#afterPropertiesSet called for User
+        
+        5.BeanPostProcessor#postProcessAfterInitialization called for: user
+        
+        User [name=Alice, address=Address{city='New York'}]
+        
+        DisposableBean#destroy called for User
+        
+        DisposableBean#destroy called for Address
+*/
