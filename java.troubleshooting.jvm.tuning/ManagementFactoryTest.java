@@ -36,3 +36,17 @@ public class ManagementFactoryTest {
         }
     }
 }
+/*
+Output:
+    jvm argument 1 = --enable-preview
+    jvm argument 2 = -XX:+ShowCodeDetailsInExceptionMessages
+    used heap memory = 0
+    init heap memory = 262144000
+    max heap memory = 4171235328
+    thread id = 3, thread name = main
+    thread id = 13, thread name = Reference Handler
+    thread id = 14, thread name = Finalizer
+    thread id = 15, thread name = Signal Dispatcher
+    thread id = 21, thread name = Notification Thread
+    thread id = 22, thread name = Common-Cleaner
+ */
