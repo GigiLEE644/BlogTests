@@ -22,3 +22,10 @@ public class MemoryLeakTest {
         System.out.println(twentyMB);
     }
 }
+
+/*
+Output:
+    Static list is filled, so far no OOM
+    Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+        at MemoryLeakTest.main(MemoryLeakTest.java:21)
+ */
