@@ -24,3 +24,7 @@ public class MemoryLeakTest2 {
         }
     }
 }
+/**
+ * Output:
+ *  3
+ */

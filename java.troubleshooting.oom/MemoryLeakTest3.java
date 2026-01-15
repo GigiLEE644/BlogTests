@@ -55,3 +55,7 @@ public class MemoryLeakTest3 {
         }
     }
 }
+/**
+ * Output:
+ *  2
+ */
