@@ -26,3 +26,9 @@ class Outer {
         }
     }
 }
+/*
+ * Output :
+ *      Outer@251a69d7
+ *      A gc is done here.
+ *      Outer@251a69d7
+ */
