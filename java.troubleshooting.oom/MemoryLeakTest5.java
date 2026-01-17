@@ -52,3 +52,23 @@ public class MemoryLeakTest5 {
         }
     }
 }
+/**
+ * Output :
+            There are 86966 elements in finalizer queue.
+            There are 0 elements in finalizer queue.
+            There are 377 elements in finalizer queue.
+            There are 401 elements in finalizer queue.
+            There are 24 elements in finalizer queue.
+            There are 1 elements in finalizer queue.
+            There are 1 elements in finalizer queue.
+            There are 22002 elements in finalizer queue.
+            There are 875597 elements in finalizer queue.
+            There are 1351394 elements in finalizer queue.
+            There are 1436478 elements in finalizer queue.
+            There are 1441903 elements in finalizer queue.
+            There are 1479023 elements in finalizer queue.
+            
+            Exception: java.lang.OutOfMemoryError thrown from the UncaughtExceptionHandler in thread "Thread-0"
+            
+            Exception: java.lang.OutOfMemoryError thrown from the UncaughtExceptionHandler in thread "main"
+ */
