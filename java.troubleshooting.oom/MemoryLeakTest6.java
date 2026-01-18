@@ -16,3 +16,9 @@ public class MemoryLeakTest6 {
         }
     }
 }
+/**
+ * Output:
+ *      Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+ *          at java.base/java.io.FileInputStream.<init>(FileInputStream.java:219)
+ *          at MemoryLeakTest6.main(MemoryLeakTest6.java:15)
+ */
