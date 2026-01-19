@@ -64,3 +64,15 @@ public class MemoryLeakTest7 {
         }
     }
 }
+/**
+ * Output:
+    T2 : 1
+    T2 : 2
+    T1 : 1
+    T2 : 3
+    T1 : 2
+    T2 : 4
+    T1 : 3
+
+    Exception: java.lang.OutOfMemoryError thrown from the UncaughtExceptionHandler in thread "main"
+ */
