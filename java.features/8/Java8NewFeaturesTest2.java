@@ -23,3 +23,7 @@ public class Java8NewFeaturesTest2 {
         void compare(int a, int b);
     }
 }
+/**
+ * Output:
+ *      1 is smaller than 2
+ */
