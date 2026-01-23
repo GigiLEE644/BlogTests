@@ -26,3 +26,8 @@ public class Java8NewFeaturesTest3 {
         display.andThen(modify).andThen(display).accept(l);
     }
 }
+/**
+ * Output:
+ *          1 2 3 
+ *          2 4 6
+ */

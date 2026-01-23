@@ -48,3 +48,10 @@ public class Java8NewFeaturesTest5 {
         }
     }
 }
+/**
+ * Output :
+ *      Euro Millions
+ *      10 22 8 6 23 48 47 
+ *      Loto
+ *      49 33 1 3 36 47
+ */

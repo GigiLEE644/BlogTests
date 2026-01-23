@@ -59,3 +59,7 @@ public class Java8NewFeaturesTest4 {
         }
     }
 }
+/**
+ * Output :
+ *      User [name=jerry, age=16, role=mouse]
+ */

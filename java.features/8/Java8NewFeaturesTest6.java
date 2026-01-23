@@ -66,3 +66,24 @@ public class Java8NewFeaturesTest6 {
         }
     }
 }
+/**
+ * Output :
+ * 
+ * Original List :
+        Person [name=tom, age=18]
+        Person [name=jerry, age=16]
+        Person [name=spike, age=21]
+        Person [name=tyke, age=6]
+        
+        Sorted List by using andThen :
+        Person [name=tyke, age=6]
+        Person [name=jerry, age=16]
+        Person [name=tom, age=18]
+        Person [name=spike, age=21]
+        
+        Sorted List by using compose :
+        Person [name=tyke, age=6]
+        Person [name=jerry, age=16]
+        Person [name=tom, age=18]
+        Person [name=spike, age=21]
+ */
