@@ -27,3 +27,8 @@ public class Java8NewFeaturesTest8 {
         }
     }
 }
+/**
+ * Output:
+ *      hello
+ *      world
+ */
