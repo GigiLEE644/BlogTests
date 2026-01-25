@@ -14,3 +14,7 @@ public class Java8NewFeaturesTest15 {
         System.out.println(total.get());
     }
 }
+/**
+ * Output:
+ * 45
+ */
