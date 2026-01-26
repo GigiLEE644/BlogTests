@@ -31,3 +31,15 @@ public class Java8NewFeaturesTest18 {
         s4.forEach(System.out::println);
     }
 }
+/**
+ * Output:
+ *      hello
+ *      world
+ *  
+ *      hello
+ *  
+ *      world
+ *  
+ *      hello
+ *      world
+ */

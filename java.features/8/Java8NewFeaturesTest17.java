@@ -45,3 +45,14 @@ public class Java8NewFeaturesTest17 {
         }
     }
 }
+/**
+ * Output:
+ *      hello
+ *      world
+ *  
+ *      hello
+ *      world
+ *  
+ *      hello
+ *      world
+ */
