@@ -61,3 +61,20 @@ public class Java8NewFeaturesTest25 {
         }
     }
 }
+/**
+ * Output:
+        Person [name=jerry, age=16]
+        Person [name=spike, age=26]
+        Person [name=tom, age=18]
+        Person [name=tyke, age=6]
+
+        Person [name=tyke, age=6]
+        Person [name=tom, age=18]
+        Person [name=spike, age=26]
+        Person [name=jerry, age=16]
+
+        Person [name=tyke, age=6]
+        Person [name=jerry, age=16]
+        Person [name=tom, age=18]
+        Person [name=spike, age=26]
+ */

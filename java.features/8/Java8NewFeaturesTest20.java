@@ -51,3 +51,13 @@ public class Java8NewFeaturesTest20 {
         }
     }
 }
+/**
+ * Output:
+        [Person [name=tom], Person [name=jerry]]
+        [Person [name=spike], Person [name=tyke]]
+
+        Person [name=tom]
+        Person [name=jerry]
+        Person [name=spike]
+        Person [name=tyke]
+ */

@@ -41,3 +41,10 @@ public class Java8NewFeaturesTest26 {
         }
     }
 }
+/**
+ * Output:
+        peek : Person [name=tom, age=18]
+        Person [name=tom, age=18]
+        peek : Person [name=jerry, age=16]
+        Person [name=jerry, age=16]
+ */

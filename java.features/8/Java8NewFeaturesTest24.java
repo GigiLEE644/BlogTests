@@ -36,3 +36,8 @@ public class Java8NewFeaturesTest24 {
         }
     }
 }
+/**
+ * Output:
+        Person [name=spike, age=26]
+        Person [name=tyke, age=6]
+ */

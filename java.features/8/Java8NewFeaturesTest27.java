@@ -18,3 +18,23 @@ public class Java8NewFeaturesTest27 {
                 });
     }
 }
+/**
+ * Output:
+        main : 1
+        1
+        main : 2
+        2
+        main : 3
+        3
+        main : 4
+        4
+        
+        main : 1
+        1
+        main : 2
+        2
+        main : 3
+        3
+        main : 4
+        4
+ */

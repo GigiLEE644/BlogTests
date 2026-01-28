@@ -18,3 +18,23 @@ public class Java8NewFeaturesTest29 {
                 });
     }
 }
+/**
+ * Output:
+        main : 1
+        1
+        main : 2
+        2
+        main : 3
+        3
+        main : 4
+        4
+        
+        main : 3
+        3
+        main : 1
+        1
+        ForkJoinPool.commonPool-worker-1 : 4
+        4
+        ForkJoinPool.commonPool-worker-2 : 2
+        2
+ */

@@ -28,3 +28,11 @@ public class Java8NewFeaturesTest19 {
         }
     }
 }
+/**
+ * Output:
+        tom
+        jerry
+
+        Person [name=tom]
+        Person [name=jerry]
+ */
