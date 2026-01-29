@@ -11,3 +11,15 @@ public class Java8NewFeaturesTest34 {
         Stream.of(arr).parallel().forEachOrdered(System.out::println);
     }
 }
+/**
+ * Output:
+        4
+        2
+        3
+        1
+        
+        1
+        3
+        4
+        2
+ */
