@@ -13,3 +13,10 @@ public class Java8NewFeaturesTest32 {
         set.forEach(System.out::println);
     }
 }
+/**
+ * Output :
+ * 1
+ * 2
+ * 3
+ * 4
+ */

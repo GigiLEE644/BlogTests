@@ -14,3 +14,8 @@ public class Java8NewFeaturesTest37 {
         System.out.println(any.get());
     }
 }
+/**
+ * Output :
+ * 1
+ * 1
+ */

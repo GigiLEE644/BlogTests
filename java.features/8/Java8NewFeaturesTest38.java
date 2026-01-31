@@ -9,3 +9,9 @@ public class Java8NewFeaturesTest38 {
         System.out.println(Stream.of(arr).noneMatch(i -> i < 0));
     }
 }
+/**
+ * Output :
+ * true
+ * true
+ * true
+ */
