@@ -17,3 +17,8 @@ public class Java8NewFeaturesTest36 {
         System.out.println(max.get());
     }
 }
+/** 
+ * Output:
+ * 1
+ * 4
+ */

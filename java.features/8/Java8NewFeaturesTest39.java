@@ -27,3 +27,20 @@ public class Java8NewFeaturesTest39 {
         }
     }
 }
+/**
+ * Output:
+        1
+        3
+        4
+        2
+        
+        1
+        3
+        4
+        2
+        
+        1
+        3
+        4
+        2 
+ */

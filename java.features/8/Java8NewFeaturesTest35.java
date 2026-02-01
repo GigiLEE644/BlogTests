@@ -7,3 +7,7 @@ public class Java8NewFeaturesTest35 {
         System.out.println(Stream.of(arr).count());
     }
 }
+/**
+ * Output:
+ * 4
+ */

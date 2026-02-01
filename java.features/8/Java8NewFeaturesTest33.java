@@ -12,3 +12,7 @@ public class Java8NewFeaturesTest33 {
         System.out.println(reduced.get());
     }
 }
+/**
+ * Output:
+ * 10
+ */
