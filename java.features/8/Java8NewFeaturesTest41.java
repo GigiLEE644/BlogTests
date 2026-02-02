@@ -25,3 +25,24 @@ public class Java8NewFeaturesTest41 {
         ts.forEach(System.out::println);
     }
 }
+/**
+ * Output:
+        1
+        3
+        4
+        2
+        2
+        4
+        3
+        1
+        
+        1
+        2
+        3
+        4
+        
+        1
+        2
+        3
+        4
+ */
