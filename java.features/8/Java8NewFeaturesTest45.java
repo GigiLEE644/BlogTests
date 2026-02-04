@@ -18,3 +18,9 @@ public class Java8NewFeaturesTest45 {
         System.out.println(greeting);
     }
 }
+/**
+ * Output:
+        hello
+        hello world
+        tom : hello world!
+ */

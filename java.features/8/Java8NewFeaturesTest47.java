@@ -15,3 +15,11 @@ public class Java8NewFeaturesTest47 {
         System.out.println("sum : " + iss.getSum());
     }
 }
+/**
+ * Output:
+        average : 2.5
+        count : 4
+        max : 4
+        min : 1
+        sum : 10
+ */

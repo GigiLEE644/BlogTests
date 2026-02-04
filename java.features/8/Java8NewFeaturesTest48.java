@@ -23,3 +23,10 @@ public class Java8NewFeaturesTest48 {
         System.out.println("min = " + min2.get());
     }
 }
+/** 
+ * Output:
+        max = 4
+        max = 4
+        min = 1
+        min = 1
+ */

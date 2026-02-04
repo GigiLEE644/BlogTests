@@ -10,3 +10,7 @@ public class Java8NewFeaturesTest46 {
         System.out.println(count);
     }
 }
+/**
+ * Output:
+        2
+ */
