@@ -17,3 +17,10 @@ public class Java8NewFeaturesTest51 {
         }
     }
 }
+/**
+ * Output:
+ * key = 1 value = [2]
+ * key = 2 value = [4]
+ * key = 3 value = [6]
+ * key = 4 value = [8]
+ */

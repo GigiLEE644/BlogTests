@@ -43,3 +43,17 @@ public class Java8NewFeaturesTest54 {
         }
     }
 }
+/**
+ * Output:
+    10000
+    {16=[Employee [name=jerry, age=16, salary=10000]], 18=[Employee [name=tom, age=18, salary=10000]]}
+
+    100
+    {3=[Employee [name=tuffy, age=3, salary=100], Employee [name=topsy, age=3, salary=100]]}
+
+    1000
+    {6=[Employee [name=tyke, age=6, salary=1000]]}
+
+    9000
+    {28=[Employee [name=spike, age=28, salary=9000]]}
+ */
