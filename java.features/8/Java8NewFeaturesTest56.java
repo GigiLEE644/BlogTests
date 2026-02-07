@@ -62,3 +62,36 @@ public class Java8NewFeaturesTest56 {
         }
     }
 }
+/**
+ * Output :
+        supplier
+
+        accumulator
+
+        Employee [name=tom, age=18, salary=10000]
+
+        accumulator
+        tom
+        Employee [name=jerry, age=16, salary=10000]
+
+        accumulator
+        tom,jerry
+        Employee [name=spike, age=28, salary=9000]
+
+        accumulator
+        tom,jerry,spike
+        Employee [name=tyke, age=6, salary=1000]
+
+        accumulator
+        tom,jerry,spike,tyke
+        Employee [name=tuffy, age=3, salary=100]
+
+        accumulator
+        tom,jerry,spike,tyke,tuffy
+        Employee [name=topsy, age=3, salary=100]
+
+        finisher
+        tom,jerry,spike,tyke,tuffy,topsy
+
+        tom,jerry,spike,tyke,tuffy,topsy
+ */

@@ -44,3 +44,17 @@ public class Java8NewFeaturesTest55 {
         }
     }
 }
+/**
+ * Output:
+        10000
+        16
+        
+        100
+        3
+        
+        1000
+        6
+        
+        9000
+        28
+ */
