@@ -9,3 +9,9 @@ public class Java8NewFeaturesTest57 {
         System.out.println(IntStream.range(1, 5).average().getAsDouble());
     }
 }
+/** 
+    Output:
+        10
+        
+        2.5
+ */

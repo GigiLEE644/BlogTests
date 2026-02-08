@@ -38,3 +38,11 @@ public class Java8NewFeaturesTest58 {
                 .reduce(0L, Long::sum);
     }
 }
+/**
+ * Output:
+        2500000000000000
+        Elapsed Time: 19998 ms.
+        
+        2500000000000000
+        Elapsed Time: 6020 ms.
+ */

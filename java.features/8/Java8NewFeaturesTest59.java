@@ -14,3 +14,20 @@ public class Java8NewFeaturesTest59 {
         Stream.of("1", "2", "3", "4").mapToInt(Integer::parseInt).forEach(System.out::println);
     }
 }
+/**
+    Output:
+        1
+        2
+        3
+        4
+        
+        1
+        2
+        3
+        4
+        
+        1
+        2
+        3
+        4
+ */
