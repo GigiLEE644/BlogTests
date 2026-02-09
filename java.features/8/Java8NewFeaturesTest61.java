@@ -57,3 +57,8 @@ public class Java8NewFeaturesTest61 {
         return null;
     }
 }
+/**
+ * Output:
+ *      /tmp/helloworld1234567890.txt
+ *      hi, helloworld!
+ */

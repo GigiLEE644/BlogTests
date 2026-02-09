@@ -43,3 +43,7 @@ public class Java8NewFeaturesTest60 {
         return null;
     }
 }
+/**
+ * Output:
+ *      hi, helloworld!
+ */
