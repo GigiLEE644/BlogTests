@@ -9,3 +9,16 @@ public class Java8NewFeaturesTest63 {
         s.get().forEach(System.out::println);
     }
 }
+/**
+ * Output:
+        1
+        2
+        3
+        4
+        5
+        1
+        2
+        3
+        4
+        5
+ */
