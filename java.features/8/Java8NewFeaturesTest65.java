@@ -8,3 +8,11 @@ public class Java8NewFeaturesTest65 {
         nums.forEach(System.out::println);
     }
 }
+/**
+ * Output:
+ * 1
+ * 2
+ * 3
+ * 4
+ * 5
+ */
