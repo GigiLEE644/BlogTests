@@ -19,3 +19,16 @@ public class Java8NewFeaturesTest66 {
         });
     }
 }
+/**
+ * Output:
+ 
+    0,0
+    0,1
+    1,0
+    1,1
+    
+    0,0
+    0,1
+    1,0
+    1,1
+ */
