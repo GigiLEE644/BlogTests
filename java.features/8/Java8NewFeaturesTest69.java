@@ -25,3 +25,16 @@ public class Java8NewFeaturesTest69 {
         }
     }
 }
+/**
+    Output :
+
+        tom
+        jerry
+        spike
+        tyke
+        
+        tom
+        jerry
+        spike
+        tyke
+ */

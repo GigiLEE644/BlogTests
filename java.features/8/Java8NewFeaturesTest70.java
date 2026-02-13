@@ -28,3 +28,16 @@ public class Java8NewFeaturesTest70 {
         nameSet2.forEach(System.out::println);
     }
 }
+/**
+    Output :
+ 
+        tom
+        tyke
+        jerry
+        spike
+        
+        tom
+        tyke
+        jerry
+        spike
+ */

@@ -18,3 +18,16 @@ public class Java8NewFeaturesTest68 {
         nameList2.forEach(System.out::println);
     }
 }
+/**
+  Output :
+ 
+    tom
+    jerry
+    spike
+    tyke
+    
+    tom
+    jerry
+    spike
+    tyke
+ */
