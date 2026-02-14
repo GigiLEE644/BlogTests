@@ -22,3 +22,9 @@ public class Java8NewFeaturesTest71 {
         System.out.println(maximum);
     }
 }
+/**
+ * Output:
+ * 4
+ * 
+ * 4
+ */

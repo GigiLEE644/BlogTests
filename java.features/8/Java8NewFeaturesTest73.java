@@ -20,3 +20,9 @@ public class Java8NewFeaturesTest73 {
         System.out.println(nums.contains(find));
     }
 }
+/**
+ * Output:
+ * true
+ * 
+ * true
+ */

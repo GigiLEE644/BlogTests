@@ -18,3 +18,9 @@ public class Java8NewFeaturesTest72 {
         System.out.println(nums.size());
     }
 }
+/**
+ * Output:
+ * 3
+ * 
+ * 3
+ */
