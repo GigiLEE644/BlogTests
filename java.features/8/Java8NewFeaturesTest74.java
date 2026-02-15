@@ -24,3 +24,9 @@ public class Java8NewFeaturesTest74 {
         System.out.println(nums.size());
     }
 }
+/**
+ * Output:
+ * 5000
+ * 
+ * 4545
+ */
