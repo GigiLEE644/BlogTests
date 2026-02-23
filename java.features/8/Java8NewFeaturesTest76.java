@@ -35,3 +35,11 @@ public class Java8NewFeaturesTest76 {
         }
     }
 }
+/**
+ * Output:
+    bonjour
+    hahahahaha
+    
+    hello
+    hahahahaha
+ */

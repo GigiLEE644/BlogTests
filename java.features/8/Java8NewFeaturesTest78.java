@@ -9,3 +9,7 @@ public class Java8NewFeaturesTest78 {
         }
     }
 }
+/**
+ * Output:
+    hahahaha
+ */

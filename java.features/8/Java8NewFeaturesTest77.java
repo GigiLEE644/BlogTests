@@ -35,3 +35,9 @@ public class Java8NewFeaturesTest77 {
         }
     }
 }
+/**
+ * Output:
+    hello
+    
+    bonjour
+ */
