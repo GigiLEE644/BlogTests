@@ -55,3 +55,7 @@ public class Java8NewFeaturesTest80 {
         }
     }
 }
+/**
+ * Output:
+    20
+ */
