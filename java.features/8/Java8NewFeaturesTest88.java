@@ -13,3 +13,11 @@ public class Java8NewFeaturesTest88 {
         System.out.println(name.get());
     }
 }
+/**
+ * Output:
+    tom
+    
+    java.util.NoSuchElementException: No value present
+            at java.base/java.util.Optional.get(Optional.java:143)
+            at Java8NewFeaturesTest88.main(Java8NewFeaturesTest88.java:12)
+ */

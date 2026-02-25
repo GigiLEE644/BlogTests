@@ -15,3 +15,9 @@ public class Java8NewFeaturesTest84 {
         opt.ifPresent(System.out::println);
     }
 }
+/**
+ * Output:
+    tom
+    
+    tom
+ */

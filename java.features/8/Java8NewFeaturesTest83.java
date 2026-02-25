@@ -21,3 +21,14 @@ public class Java8NewFeaturesTest83 {
         System.out.println();
     }
 }
+/**
+ * Output:
+    true
+    true
+    
+    false
+    false
+    
+    false
+    false
+ */
