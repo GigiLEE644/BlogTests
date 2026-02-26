@@ -20,3 +20,10 @@ public class Java8NewFeaturesTest86 {
         return "tom";
     }
 }
+/**
+ * Output:
+ * Inside orElse
+ * jerry
+ * 
+ * jerry
+ */

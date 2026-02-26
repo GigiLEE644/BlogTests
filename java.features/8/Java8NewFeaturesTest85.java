@@ -13,3 +13,9 @@ public class Java8NewFeaturesTest85 {
         System.out.println(name);
     }
 }
+/**
+ * Output:
+ * tom
+ * 
+ * tom
+ */
