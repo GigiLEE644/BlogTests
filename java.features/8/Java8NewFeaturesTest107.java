@@ -42,3 +42,12 @@ public class Java8NewFeaturesTest107 {
         System.out.println(sj6.toString());
     }
 }
+/**
+ * Output:
+ * []
+ *
+ * defaultValue
+ * defaultValue
+ * [hello]
+ * world
+ */

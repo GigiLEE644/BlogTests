@@ -37,3 +37,12 @@ public class Java8NewFeaturesTest101 {
         }
     }
 }
+/**
+    * Output:
+        returnTypeAnnotation :
+        @Java8NewFeaturesTest101.ExpectedType(java.lang.String.class)
+
+        parametersAnnotation :
+        @Java8NewFeaturesTest101.ExpectedType(java.lang.String.class)
+        @Java8NewFeaturesTest101.ExpectedType(boolean.class)
+ */

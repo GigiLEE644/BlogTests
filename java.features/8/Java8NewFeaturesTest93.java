@@ -42,3 +42,16 @@ public class Java8NewFeaturesTest93 {
         System.out.println(LocalTime.MIN);
     }
 }
+/**
+ * Output:
+        08:27:49.595050539
+        06:20:32
+        22:27:39
+        09:27:49.595050539
+        07:27:49.595050539
+        true
+        true
+        08:27:49
+        23:59:59.999999999
+        00:00
+ */

@@ -24,3 +24,11 @@ public class Java8NewFeaturesTest99 {
         System.out.println(ldt2);
     }
 }
+/**
+  Output:
+        Sat Feb 28 08:42:23 CET 2026
+        Sat Feb 28 08:42:23 CET 2026
+
+        2026-02-28T08:42:23.744
+        2026-02-28T08:42:23.884
+ */

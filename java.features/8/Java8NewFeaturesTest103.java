@@ -27,3 +27,8 @@ public class Java8NewFeaturesTest103 {
         }
     }
 }
+/**
+ * Output:
+ * admin
+ * user
+ */

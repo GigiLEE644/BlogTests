@@ -74,3 +74,9 @@ public class Java8NewFeaturesTest90 {
         }
     }
 }
+/**
+ * Output:
+ * 64
+ * 
+ * 64
+ */

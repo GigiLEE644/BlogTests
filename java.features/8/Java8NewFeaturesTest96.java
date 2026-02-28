@@ -68,3 +68,39 @@ public class Java8NewFeaturesTest96 {
         System.out.println(p7);
     }
 }
+/**
+ * Output:
+        2024-02-02 is before 2025-01-03
+        0
+        11
+        1
+        
+        2025-01-03 is after 2024-02-02
+        0
+        -11
+        -1
+        
+        false
+        2
+        3
+        4
+        
+        true
+        -2
+        3
+        4
+        
+        false
+        2
+        3
+        4
+        
+        true
+        -2
+        3
+        4
+        
+        startDate = 2025-01-03
+        endDate = 2025-01-03
+        P0D
+ */

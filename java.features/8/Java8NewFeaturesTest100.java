@@ -34,3 +34,11 @@ public class Java8NewFeaturesTest100 {
         System.out.println(formatedDT);
     }
 }
+/**
+ * Output:
+        2026-02-28
+        2026-02-28T08:50:42.446709507
+        2015/10/03
+        11:20:58
+        2016/04/03 01:30:09
+ */

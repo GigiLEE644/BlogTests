@@ -55,3 +55,25 @@ public class Java8NewFeaturesTest104 {
         }
     }
 }
+/**
+ * Output:
+        1
+        2
+        3
+        4
+        5
+        
+        1
+        2
+        3
+        4
+        5
+        
+        1
+        2
+        3
+        4
+        5
+        
+        0
+ */

@@ -88,3 +88,16 @@ public class Java8NewFeaturesTest105 {
         }
     }
 }
+/**
+ * Output:
+        Product [id=1, name=candy]
+        Product [id=2, name=milk]
+        
+        Product [id=1, name=candy]
+        Product [id=2, name=milk]
+        
+        Product [id=1, name=candy]
+        Product [id=2, name=milk]
+        
+        0
+ */

@@ -42,3 +42,14 @@ public class Java8NewFeaturesTest94 {
         System.out.println(year + "-" + month + "-" + dayOfMonth + " " + hour + ":" + minute + ":" + second);
     }
 }
+/**
+ * Output:
+        2026-02-28T08:29:25.981021908
+        2025-12-23T23:39:33
+        2023-01-02T12:23:21
+        true
+        false
+        2026-03-01T08:29:25.981021908
+        2026-02-28T07:29:25.981021908
+        2026-2-28 8:29:25
+ */

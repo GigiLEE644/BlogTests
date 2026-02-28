@@ -53,3 +53,13 @@ public class Java8NewFeaturesTest89 {
         }
     }
 }
+/**
+ * Output:
+        *********  Tom is >= 18 *********
+        Person [name=tom, age=18]
+        Person [name=tom, age=18]
+        
+        ********* Jerry is < 18 *********
+        
+        *********  No one here  *********
+ */

@@ -43,3 +43,15 @@ public class Java8NewFeaturesTest108 {
         System.out.println("sj4 after being merged by sj3 = " + sj4.toString());
     }
 }
+/**
+ * Output:
+ * sj1 = [a,b]
+ * sj2 = [c,d]
+ * sj1 after merging sj2 = [a,b,c,d]
+ * sj2 being mered by sj1 = [c,d]
+ *
+ * sj3 = [a,b]
+ * sj4 = [c-d]
+ * sj3 after merging sj4 = [a,b,c-d]
+ * sj4 after being merged by sj3 = [c-d]
+ */

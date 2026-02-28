@@ -29,3 +29,8 @@ public class Java8NewFeaturesTest106 {
         System.out.println(sj2.toString());
     }
 }
+/**
+ * Output:
+ * [hello,world]
+ * [hello,world]
+ */

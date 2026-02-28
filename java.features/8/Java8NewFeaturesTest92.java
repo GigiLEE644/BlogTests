@@ -44,3 +44,16 @@ public class Java8NewFeaturesTest92 {
         System.out.println(isAfter);
     }
 }
+/**
+ * Output:
+        2026-02-28
+        2025-02-23
+        2022-03-17
+        2026-03-01
+        2026-03-28
+        28
+        59
+        false
+        false
+        true
+ */

@@ -30,3 +30,17 @@ public class Java8NewFeaturesTest98 {
         System.out.println(nano + " nano");
     }
 }
+/**
+    Output :
+        2024-08-31T10:20:55
+        2027-11-09T10:21:56
+        3 years
+        38 months
+        166 weeks
+        1165 days
+        27960 hours
+        1677601 minutes
+        100656061 seconds
+        100656061000 milis
+        100656061000000000 nano
+*/

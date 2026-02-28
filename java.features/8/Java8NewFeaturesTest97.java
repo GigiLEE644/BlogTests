@@ -52,3 +52,25 @@ public class Java8NewFeaturesTest97 {
         System.out.println(d5);
     }
 }
+/**
+    Output:
+        11:01:02 is before 12:10:13
+        1
+        69
+        4151
+
+        12:10:13 is after 11:01:02
+        -1
+        -69
+        -4151
+
+        false
+        2
+        123
+        7384
+
+        startTime = 12:00:03
+        endTime = 12:10:13
+        PT10M10S
+        PT9529H1M1S
+*/
