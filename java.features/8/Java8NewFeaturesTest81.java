@@ -25,36 +25,34 @@ public class Java8NewFeaturesTest81 {
     }
 
     private static int getCapacity(Car car) {
-        return car.getFuel().map(
-                            fuel -> fuel.getTank().map(
-                                tank -> tank.getCapacity()
-                            )
-                            .orElseGet(() -> 0)
-                        )
-                        .orElseGet(() -> 0);
+        return Optional.ofNullable(car)
+                .map(Car::getFuel)
+                .map(FuelSystem::getTank)
+                .map(FuelTank::getCapacity)
+                .orElseGet(() -> 0);
     }
 
     private static class Car {
-        private Optional<FuelSystem> fuel;
+        private FuelSystem fuel;
 
         public Car(FuelSystem fuel) {
-            this.fuel = Optional.ofNullable(fuel);
+            this.fuel = fuel;
         }
 
-        public Optional<FuelSystem> getFuel() {
-            return fuel;
+        public FuelSystem getFuel() {
+            return this.fuel;
         }
     }
 
     private static class FuelSystem {
-        private Optional<FuelTank> tank;
+        private FuelTank tank;
 
         public FuelSystem(FuelTank tank) {
-            this.tank = Optional.ofNullable(tank);
+            this.tank = tank;
         }
 
-        public Optional<FuelTank> getTank() {
-            return tank;
+        public FuelTank getTank() {
+            return this.tank;
         }
     }
 
@@ -66,7 +64,7 @@ public class Java8NewFeaturesTest81 {
         }
 
         public int getCapacity() {
-            return capacity;
+            return this.capacity;
         }
     }
 }

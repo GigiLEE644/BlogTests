@@ -11,26 +11,26 @@ public class Java8NewFeaturesTest91 {
     }
 
     private static class Computer {
-        private Optional<MotherBoard> motherBoard;
+        private MotherBoard motherBoard;
 
         public Computer(MotherBoard motherBoard) {
-            this.motherBoard = Optional.ofNullable(motherBoard);
+            this.motherBoard = motherBoard;
         }
 
         public Optional<MotherBoard> getMotherBoard() {
-            return motherBoard;
+            return Optional.ofNullable(this.motherBoard);
         }
     }
 
     private static class MotherBoard {
-        private Optional<Memory> memory;
+        private Memory memory;
 
         public MotherBoard(Memory memory) {
-            this.memory = Optional.ofNullable(memory);
+            this.memory = memory;
         }
 
         public Optional<Memory> getMemory() {
-            return memory;
+            return Optional.ofNullable(this.memory);
         }
     }
 
