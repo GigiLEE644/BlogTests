@@ -34,3 +34,30 @@ public class Java11NewFeaturesTest1 {
         "hello\nworld\n".lines().forEach(System.out::println);
     }
 }
+/**
+ * Output:
+        true
+        true
+        true
+        **********
+        hello world!
+        hello world!
+        hello world!
+        **********
+        hello world !
+        hello world     !
+        hello world
+        !
+        **********
+         hello world!
+                hello world!
+        
+        hello world!
+        **********
+        hello worldhello world
+        
+        hello world
+        **********
+        hello
+        world
+ */
