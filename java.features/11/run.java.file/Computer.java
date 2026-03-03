@@ -10,3 +10,9 @@ public class Computer {
                 System.out.println("I am a computer");
         }
 }
+/**
+ * java Computer.java
+ * 
+ * Output:
+        I am a screen
+*/

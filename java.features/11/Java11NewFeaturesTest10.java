@@ -33,3 +33,21 @@ public class Java11NewFeaturesTest10 {
         System.out.println(response.body());
     }
 }
+/**
+ * Output:
+        [ Client ]
+ 
+        200
+
+        Wed Jun 12 14:30:00 CST 2024
+
+        [ Server ]
+        
+        Listening for connection on port 8080 ....
+        POST / HTTP/1.1
+        Content-Length: 25
+        Host: localhost:8080
+        User-Agent: Java-http-client/11.0.1
+        Content-Type: application/json
+        {"name":"tom","age":"18"}
+*/

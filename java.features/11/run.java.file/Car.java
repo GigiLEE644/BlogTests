@@ -12,3 +12,9 @@ public class Car {
                 System.out.println("I am a car");
         }
 }
+/**
+ * java Car.java
+ * 
+ * Output:
+        error: can't find main(String[]) method in class : Engine
+*/
