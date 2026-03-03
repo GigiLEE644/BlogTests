@@ -20,3 +20,7 @@ public class Java11NewFeaturesTest2 {
         }
     }
 }
+/**
+ * Output:
+        hello world
+ */

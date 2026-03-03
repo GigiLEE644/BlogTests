@@ -30,3 +30,14 @@ public class Java11NewFeaturesTest3 {
         System.out.println();
     }
 }
+/** 
+ * Output:
+        hello
+        world
+
+        hello
+        world
+
+        hello
+        world
+ */

@@ -21,3 +21,17 @@ public class Java11NewFeaturesTest5 {
         nums.stream().map((var num) -> num * 2).forEach(System.out::println);
     }
 }
+/** 
+ * Output:
+        2
+        4
+        6
+
+        2
+        4
+        6
+
+        2
+        4
+        6
+*/

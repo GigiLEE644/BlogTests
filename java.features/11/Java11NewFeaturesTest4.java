@@ -37,3 +37,11 @@ public class Java11NewFeaturesTest4 {
         }
     }
 }
+/**
+ * Output:
+        Person [name=tom, age=18]
+        Person [name=jerry, age=16]
+
+        Person [name=tom, age=18]
+        Person [name=jerry, age=16]
+ */
