@@ -43,3 +43,9 @@ public class Java17NewFeaturesTest3 {
                 return dayOfWeek;
         }
 }
+/**
+        Output:
+                day = 1, it is Monday
+                day = 5, it is Friday
+                Not a valid day of week !!!
+ */

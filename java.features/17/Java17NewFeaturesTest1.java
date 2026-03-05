@@ -31,3 +31,17 @@ public class Java17NewFeaturesTest1 {
         System.out.println(sql);
     }
 }
+/**
+        Output:
+                {
+                    "name": "tom",
+                    "age": 18
+                }
+        
+                Text blocks start with a """ (three double-quote marks) followed by optional whitespaces and a newline.
+        
+                hi, my name is tom.
+        
+                select * from user
+                where name = 'tom' and age = 18;
+ */

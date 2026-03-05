@@ -17,3 +17,9 @@ public class Java17NewFeaturesTest4 {
                 return dayOfWeek;
         }
 }
+/**
+        Output:
+                Weekday
+                Weekend
+                Not a valid day of week !!!
+ */
