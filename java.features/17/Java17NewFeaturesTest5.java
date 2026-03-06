@@ -16,4 +16,18 @@ public class Java17NewFeaturesTest5 {
         Person[name=tom, age=18]
         tom
         18
+
+        javap -p Java17NewFeaturesTest5\$Person.class 
+
+        Compiled from "Java17NewFeaturesTest5.java"
+        final class Java17NewFeaturesTest5$Person extends java.lang.Record {
+                private final java.lang.String name;
+                private final int age;
+                private Java17NewFeaturesTest5$Person(java.lang.String, int);
+                public final java.lang.String toString();
+                public final int hashCode();
+                public final boolean equals(java.lang.Object);
+                public java.lang.String name();
+                public int age();
+}
  */
