@@ -11,3 +11,9 @@ public class Java17NewFeaturesTest5 {
         private static record Person(String name, int age) {
         }
 }
+/**
+ * Output:
+        Person[name=tom, age=18]
+        tom
+        18
+ */
