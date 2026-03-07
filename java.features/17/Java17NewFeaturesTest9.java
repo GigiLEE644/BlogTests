@@ -35,3 +35,15 @@ public class Java17NewFeaturesTest9 {
                 }
         }
 }
+/**
+ * Output:
+        java.lang.IllegalArgumentException: name is required
+                at Java17NewFeaturesTest9$Person.<init>(Java17NewFeaturesTest9.java:29)
+                at Java17NewFeaturesTest9.main(Java17NewFeaturesTest9.java:5)
+
+        java.lang.IllegalArgumentException: age should >= 1
+                at Java17NewFeaturesTest9$Person.<init>(Java17NewFeaturesTest9.java:33)
+                at Java17NewFeaturesTest9.main(Java17NewFeaturesTest9.java:13)
+
+        Person[name=tom, age=18]
+ */

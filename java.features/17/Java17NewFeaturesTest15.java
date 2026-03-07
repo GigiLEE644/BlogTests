@@ -67,3 +67,8 @@ public class Java17NewFeaturesTest15 {
                 }
         }
 }
+/**
+ * Output:
+ *       [rice, bread, noodle]
+ *       [egg, milk, cheese]
+ */

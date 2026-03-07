@@ -25,3 +25,16 @@ public class Java17NewFeaturesTest14 {
         private static record Person(String name, int age) {
         }
 }
+/**
+ * Output:
+ *       Person[name=tom, age=18]
+ *
+ *       java.lang.String name
+ *       class java.lang.String
+ *       name
+ *
+ *       int age
+ *       int
+ *       age
+ *
+*/

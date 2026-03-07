@@ -34,3 +34,17 @@ public class Java17NewFeaturesTest11 {
 
         }
 }
+/**
+ * Output:
+ *       Person[name=tom, age=18, skills=[java, c++]]
+ *       tom
+ *       18
+ *       [java, c++]
+ *       211537378
+ *
+ *       Person[name=tom, age=18, skills=[java, c++, c#, c]]
+ *       tom
+ *       18
+ *       [java, c++, c#, c]
+ *       -1615653467
+ */

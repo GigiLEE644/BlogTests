@@ -14,3 +14,9 @@ public class Java17NewFeaturesTest10 {
                 }
         }
 }
+/**
+ * Output:
+ *       Person[name=tom, age=18]
+ *       tom
+ *       TOM
+ */

@@ -15,3 +15,10 @@ public class Java17NewFeaturesTest6 {
         private static record Person<T>(String name, int age, List<T> skills) {
         }
 }
+/**
+ * Output:
+ *       Person[name=tom, age=18, skills=[java, c++]]
+ *       tom
+ *       18
+ *       [java, c++]
+ */

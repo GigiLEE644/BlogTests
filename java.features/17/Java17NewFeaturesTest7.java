@@ -42,3 +42,11 @@ public class Java17NewFeaturesTest7 {
                 String value();
         }
 }
+/**
+ * Output:
+ *       Person[name=tom, age=18]
+ *       tom
+ *       18
+ *       @Java17NewFeaturesTest7$MyRecordAnnotation(value=this is a person)
+ *       @Java17NewFeaturesTest7$MyRecordComponentAnnotation(value=this is the name of the person)
+ */
