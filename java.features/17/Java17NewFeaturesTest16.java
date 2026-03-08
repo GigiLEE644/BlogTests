@@ -28,3 +28,7 @@ public class Java17NewFeaturesTest16 {
                 abstract void display();
         }
 }
+/**
+ * Output:
+ * I am a rectangle
+ */

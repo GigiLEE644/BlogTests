@@ -31,3 +31,12 @@ public class Java17NewFeaturesTest22 {
 
         }
 }
+/**
+ * Output:
+        TOM
+        java.lang.NullPointerException: Cannot invoke "String.toUpperCase()" because the return value of "Java17NewFeaturesTest22$Employee.name()" is null
+                at Java17NewFeaturesTest22.main(Java17NewFeaturesTest22.java:16)
+
+        java.lang.NullPointerException: Cannot invoke "Java17NewFeaturesTest22$Employee.name()" because the return value of "java.util.Map.get(Object)" is null
+                at Java17NewFeaturesTest22.main(Java17NewFeaturesTest22.java:24)
+ */

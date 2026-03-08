@@ -50,3 +50,10 @@ public class Java17NewFeaturesTest18 {
                 abstract void display();
         }
 }
+/**
+ * Output:
+ * I am a rectangle
+ * I am a square
+ * I am a oval
+ * I am a circle
+ */

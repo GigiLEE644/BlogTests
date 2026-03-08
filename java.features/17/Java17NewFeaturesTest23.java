@@ -32,3 +32,19 @@ public class Java17NewFeaturesTest23 {
                 System.out.println(formatter.format(billion));
         }
 }
+/**
+ * Output:
+ * 1000
+ * 1000000
+ * 1000000000
+ *
+ * Long Formats :
+ * 1 thousand
+ * 1 million
+ * 1 billion
+ *
+ * Short Formats :
+ * 1K
+ * 1M
+ * 1B
+ */

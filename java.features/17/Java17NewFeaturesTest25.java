@@ -11,3 +11,11 @@ public class Java17NewFeaturesTest25 {
                 System.out.println(timeOfDayFomatter.format(LocalTime.of(0, 0)));
         }
 }
+/**
+ * Output:
+        in the morning
+        in the afternoon
+        in the evening
+        at night
+        midnight
+ */

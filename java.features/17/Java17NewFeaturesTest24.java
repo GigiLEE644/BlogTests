@@ -35,3 +35,16 @@ public class Java17NewFeaturesTest24 {
                 System.out.println(formatter.format(million_with_fraction));
         }
 }
+/**
+ * Output:
+ * 1012
+ * 1000012
+ *
+ * Without using Fractions :
+ * 1K
+ * 1M
+ *
+ * Using Fractions :
+ * 1.01K
+ * 1.00M
+ */

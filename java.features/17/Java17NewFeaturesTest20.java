@@ -39,3 +39,8 @@ public class Java17NewFeaturesTest20 {
                 }
         }
 }
+/**
+ * Output:
+ * I am a cat
+ * I am a dog
+ */

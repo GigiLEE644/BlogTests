@@ -37,3 +37,10 @@ public class Java17NewFeaturesTest19 {
                 abstract void display();
         }
 }
+/**
+ * Output:
+ * I am a square
+ * false
+ * true
+ * class java.features.Java17NewFeaturesTest19$Square
+ */
