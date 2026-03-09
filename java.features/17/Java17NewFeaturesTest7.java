@@ -14,11 +14,11 @@ public class Java17NewFeaturesTest7 {
                 System.out.println(tom.name());
                 System.out.println(tom.age());
 
-                for (Annotation annotation : Person.class.getDeclaredAnnotations()) {
+                for (Annotation annotation : tom.getClass().getDeclaredAnnotations()) {
                         System.out.println(annotation);
                 }
 
-                for (RecordComponent recordComponents : Person.class.getRecordComponents()) {
+                for (RecordComponent recordComponents : tom.getClass().getRecordComponents()) {
                         for (Annotation annotation : recordComponents.getDeclaredAnnotations()) {
                                 System.out.println(annotation);
                         }
