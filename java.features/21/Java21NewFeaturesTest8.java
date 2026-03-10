@@ -13,3 +13,7 @@ public class Java21NewFeaturesTest8 {
                 future.join();
         }
 }
+/**
+ * Output:
+        Thread[#23,ForkJoinPool.commonPool-worker-1,5,InnocuousForkJoinWorkerThreadGroup] : HELLO WORLD
+ */

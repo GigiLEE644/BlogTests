@@ -32,3 +32,9 @@ public class Java21NewFeaturesTest2 {
                 };
         }
 }
+/**
+ * Output:
+        Dog goes : woof
+        Cat goes : meow
+        ???
+ */

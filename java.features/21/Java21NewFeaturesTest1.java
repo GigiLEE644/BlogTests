@@ -48,3 +48,20 @@ public class Java21NewFeaturesTest1 {
         record Person(Name name, int age) {
         }
 }
+/**
+ * Output:
+        first name = hello
+        last name = world
+        age = 1
+        Person[name=Name[first=hello, last=world], age=1]
+
+        first name = hello
+        last name = world
+        age = 1
+        Person[name=Name[first=hello, last=world], age=1]
+
+        first name = hello
+        last name = world
+        age = 1
+        Person[name=Name[first=hello, last=world], age=1]
+ */

@@ -46,3 +46,33 @@ public class Java21NewFeaturesTest6 {
                 System.out.println(e.getKey() + " : " + e.getValue());
         }
 }
+/**
+ * Output:
+        tom : cat
+        jerry : mouse
+        mickey : mouse
+        donald : duck
+        
+        donald : duck
+        mickey : mouse
+        jerry : mouse
+        tom : cat
+        
+        tom : cat
+        donald : duck
+        
+        scrooge : duck
+        tom : cat
+        jerry : mouse
+        mickey : mouse
+        donald : duck
+        goofy : dog
+        
+        scrooge : duck
+        goofy : dog
+        
+        tom : cat
+        jerry : mouse
+        mickey : mouse
+        donald : duck
+ */

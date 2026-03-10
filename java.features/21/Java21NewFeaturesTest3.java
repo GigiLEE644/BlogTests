@@ -20,3 +20,10 @@ public class Java21NewFeaturesTest3 {
                 };
         }
 }
+/**
+ * Output:
+        It is a empty string
+        It is a none empty string
+        It is a positive integer
+        It is a negative integer
+ */

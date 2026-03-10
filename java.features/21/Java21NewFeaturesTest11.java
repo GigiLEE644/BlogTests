@@ -50,3 +50,8 @@ public class Java21NewFeaturesTest11 {
                 }
         }
 }
+/**
+ * Output:
+        Run 1000 threads, elapsed time = 458
+        Run 1000 virtual threads, elapsed time = 157
+ */

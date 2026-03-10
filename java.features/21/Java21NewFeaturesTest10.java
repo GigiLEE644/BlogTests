@@ -21,3 +21,15 @@ public class Java21NewFeaturesTest10 {
                 Thread.currentThread().join();
         }
 }
+/* Output:
+        Running task in thread : VirtualThread[#26]/runnable@ForkJoinPool-1-worker-2
+        Running task in thread : VirtualThread[#24]/runnable@ForkJoinPool-1-worker-1
+        Running task in thread : VirtualThread[#26]/runnable@ForkJoinPool-1-worker-2
+        Running task in thread : VirtualThread[#26]/runnable@ForkJoinPool-1-worker-2
+        Running task in thread : VirtualThread[#26]/runnable@ForkJoinPool-1-worker-2
+        Running task in thread : VirtualThread[#26]/runnable@ForkJoinPool-1-worker-2
+        Running task in thread : VirtualThread[#26]/runnable@ForkJoinPool-1-worker-2
+        Running task in thread : VirtualThread[#26]/runnable@ForkJoinPool-1-worker-2
+        Running task in thread : VirtualThread[#24]/runnable@ForkJoinPool-1-worker-1
+        Running task in thread : VirtualThread[#26]/runnable@ForkJoinPool-1-worker-2
+ */

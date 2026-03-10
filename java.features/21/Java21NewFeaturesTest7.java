@@ -12,3 +12,7 @@ public class Java21NewFeaturesTest7 {
                 }
         }
 }
+/**
+ * Output:
+        Running task in a virtual thread : VirtualThread[#24]/runnable@ForkJoinPool-1-worker-1
+ */
