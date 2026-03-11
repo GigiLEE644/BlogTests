@@ -21,3 +21,8 @@ public class Java21NewFeaturesTest15 {
                 process.waitFor();
         }
 }
+/**
+ * Output:
+        /home/ovo/github/BlogTests
+        /tmp
+ */

@@ -8,6 +8,8 @@ public class Java21NewFeaturesTest3 {
                 System.out.println("It is a " + what(100));
 
                 System.out.println("It is a " + what(-100));
+
+                System.out.println("It is a " + what(null));
         }
 
         private static String what(Object obj) {
@@ -26,4 +28,5 @@ public class Java21NewFeaturesTest3 {
         It is a none empty string
         It is a positive integer
         It is a negative integer
+        It is a oops
  */

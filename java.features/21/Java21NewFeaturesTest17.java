@@ -37,3 +37,7 @@ public class Java21NewFeaturesTest17 {
                 }
         }
 }
+/* 
+ * Output:
+ *        28
+ */

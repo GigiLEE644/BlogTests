@@ -19,3 +19,7 @@ public class Java21NewFeaturesTest14 {
                 process.waitFor();
         }
 }
+/**
+ * Output:
+        hello world
+ */
