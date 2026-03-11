@@ -1,7 +1,6 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
-import java.util.UUID;
 
 public class Java21NewFeaturesTest10 {
 
