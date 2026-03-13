@@ -8,16 +8,20 @@ public class SpELExample2 {
     public static void main(String[] args) {
         ExpressionParser parser = new SpelExpressionParser();
 
-        System.out.println(parser.parseExpression("10 + 5").getValue());
-        System.out.println(parser.parseExpression("20 - 5").getValue());
-        System.out.println(parser.parseExpression("10 * 5").getValue());
-        System.out.println(parser.parseExpression("20 / 4").getValue());
+        System.out.println(parser.parseExpression("'Hello World'").getValue());
+        System.out.println(parser.parseExpression("'Tony''s Pizza'").getValue());
+        System.out.println(parser.parseExpression("6.0221415E+23").getValue());
+        System.out.println(parser.parseExpression("0x7FFFFFFF").getValue());
+        System.out.println(parser.parseExpression("true").getValue());
+        System.out.println(parser.parseExpression("null").getValue());
     }
 }
 /**
  * Output:
- * 15
- * 15
- * 50
- * 5
+ * Hello World
+ * Tony's Pizza
+ * 6.0221415E+23
+ * 2147483647
+ * true
+ * null
  */
