@@ -10,18 +10,18 @@ public class SpELExample4 {
         ExpressionParser parser = new SpelExpressionParser();
 
         @SuppressWarnings("unchecked")
-        List<Integer> numbers = (List<Integer>) parser.parseExpression("{1,2,3,4}").getValue();
+        List<Integer> l1 = (List<Integer>) parser.parseExpression("{1,2,3,4}").getValue();
 
-        numbers.forEach(System.out::print);
+        l1.forEach(System.out::print);
 
         System.out.println();
 
         @SuppressWarnings("unchecked")
-        List<List<String>> listOfLists = (List<List<String>>) parser.parseExpression("{{'a','b'},{'x','y'}}")
+        List<List<String>> l2 = (List<List<String>>) parser.parseExpression("{{'a','b'},{'x','y'}}")
                 .getValue();
 
-        listOfLists.forEach(list -> {
-            list.forEach(System.out::print);
+        l2.forEach(l -> {
+            l.forEach(System.out::print);
             System.out.println();
         });
     }
