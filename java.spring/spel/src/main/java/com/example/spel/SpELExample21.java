@@ -4,7 +4,7 @@ import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 public class SpELExample21 {
-    public static void main(String[] args) throws NoSuchMethodException {
+    public static void main(String[] args) {
         record Person(String name, int age) {
         }
 
@@ -29,7 +29,8 @@ public class SpELExample21 {
                 String.class));
     }
 }
-/* Output:
+/*
+ * Output:
  * Anonymous
  *
  * tom
