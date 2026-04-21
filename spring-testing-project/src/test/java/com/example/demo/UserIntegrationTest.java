@@ -1,11 +1,10 @@
 package com.example.demo;
 
-import com.example.demo.entity.User;
-import com.example.demo.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -16,7 +15,10 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import com.jayway.jsonpath.JsonPath;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -35,9 +37,6 @@ class UserIntegrationTest {
 
     @Autowired
     MockMvc mockMvc;
-
-    @Autowired
-    UserRepository userRepository;
 
     // ❌ No authentication
     @Test
@@ -58,15 +57,27 @@ class UserIntegrationTest {
     @Test
     @WithMockUser(roles = "USER")
     void shouldReturnUserFromDatabase() throws Exception {
-        // Insert real data into PostgreSQL
-        User user = new User();
-        user.setName("john");
-        user.setEmail("john@mail.com");
+        String json = """
+                {
+                    "name": "john",
+                    "email": "john@mail.com"
+                }
+                """;
 
-        User saved = userRepository.save(user);
+        // Create user via POST endpoint
+        String responseBody = mockMvc.perform(post("/users")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
 
-        // Call real endpoint
-        mockMvc.perform(get("/users/" + saved.getId()))
+        // Extract ID from response
+        int userId = JsonPath.read(responseBody, "$.id");
+
+        // Retrieve user via GET endpoint
+        mockMvc.perform(get("/users/" + userId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("john"))
                 .andExpect(jsonPath("$.email").value("john@mail.com"));

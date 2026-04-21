@@ -43,4 +43,17 @@ class UserRepositoryTest2 {
 
         assertThat(found).isPresent();
     }
+
+    @Test
+    void shouldFindByEmail() {
+        User user = new User();
+        user.setName("john");
+        user.setEmail("john@mail.com");
+
+        userRepository.save(user);
+
+        Optional<User> found = userRepository.findByEmail("john@mail.com");
+
+        assertThat(found).isPresent();
+    }
 }
